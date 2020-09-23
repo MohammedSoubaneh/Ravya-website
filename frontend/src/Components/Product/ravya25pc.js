@@ -1,24 +1,62 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { detailsProduct } from '../../actions/productAction';
+import {motion, AnimatePresence} from 'framer-motion';
+import { gsap, Power3 } from  'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger'
 
-function RavyaProductPageLarge(){
+
+
+
+function RavyaProductPageLarge(props){
+
+    const transition = { duration: 2, ease: [0.6, 0.01, -0.1, 0.96] };
+    const transitionDelay = { delay: 1, duration: 2, ease: [0.6, 0.01, -0.1, 0.96] };
+   
+    const productDetails = useSelector(state => state.productDetails);
+    const { product, loading, error } = productDetails;
+    const dispatch = useDispatch();
+    
+
+    useEffect(() => { 
+        dispatch(detailsProduct(props.match.params.id));
+        return () => {
+          //
+        };
+    }, []);
+
+    const handleAddToCart = () => {
+        props.history.push("/products/cart/" + props.match.params.id)
+    }
+    
     return (
-        <div className="largeHeroContainer">
-            <div className="largeHeroInner">
+     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={transitionDelay}>
+            {loading ? (
+                <div>Loading...</div>
+            ) : error ? (
+                <div>{error} </div>
+            ) : (  
+                <>
+                <div className="largeHeroContainer">
+                <div className="largeHeroInner">
                 <div className="heroImage"></div>
+                
                 <div className="productImage">
+                <motion.img initial={{opacity: 0, y: 40}} animate={{opacity: 1, y: 0}} transition={transitionDelay}  src={product.image} width="500px"/>
                 <div className="productText">
-                    <h1>For Your Health</h1>
-                    <h2>Turmeric Infusion</h2>
-                    <p className="price">$19.99</p>
-                    <p className="delivery">Delivery Info</p>
-                    <p className="addToCart">Buy Now</p>
+                    <motion.h1 initial={{opacity: 0, y: 40}} animate={{opacity: 1, y: 0}} transition={transition}>{product.title}</motion.h1>
+                    <motion.h2 initial={{opacity: 0, y: 40}} animate={{opacity: 1, y: 0}} transition={transition}>{product.name}</motion.h2>
+                    <motion.p initial={{opacity: 0, y: 40}} animate={{opacity: 1, y: 0}} transition={transition} className="price">${product.price}</motion.p>
+                    <motion.p initial={{opacity: 0, y: 40}} animate={{opacity: 1, y: 0}} transition={transition} className="delivery">Delivery Info</motion.p>
+                    <motion.div onClick={handleAddToCart} whileHover={{scale: 1.1}} whileTap={{scale:1}} className="addToCart">Buy Now</motion.div>
                 </div>
                 </div>
-            </div>
-            <div className="brillianCup">How to Make a Brilliant Cut Of Ravya</div>
+                </div>
+            <div className="brillianCup">How to Make a Brilliant Cup Of Ravya</div>
             <div className="howToMakeContainer">
             <div className="howToMakeInner">
-                    <div className="stepOneTitle">Step One</div>
+                    <div className="stepOneTitle" >Step One</div>
                     <div className="stepOneInstruction">Boil any plant based milk to 180 F (80 C).</div>
                     <div className="stepTwoTitle">Step Two</div>
                     <div className="stepTwoInstruction">Place one infusion bag in a cup. Add 150ml of boiled milk to your cup.</div>
@@ -27,7 +65,11 @@ function RavyaProductPageLarge(){
             </div>
             <div className="howToMakeVideo"></div>
             </div>
-        </div>
+            </div>
+            </>
+            )
+        }
+        </motion.div>
     )
 }
 export default RavyaProductPageLarge;

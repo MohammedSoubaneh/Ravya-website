@@ -18,7 +18,7 @@ function OurMessage() {
           trigger: ourMessageAnimate
         },
         delay: .5,
-        x: -20,
+        x: -60,
         ease: Power3.easeOut,
         opacity: 1
       }
@@ -47,7 +47,7 @@ function OurMessage() {
       <div ref= {standardAnimateGo => {standardAnimate = standardAnimateGo}} className="standard"><p>Inside each Sache of Ravya Turmeric Infusion lies 5 different kinds of turmeric, blended to
 perfection.</p></div>
       <div ref= {aboutAnimateGo => {aboutAnimate = aboutAnimateGo}} className="about"><p>Simple, Clean, and Delicious </p></div>
-      <div ref= {exploreAnimateGo => {exploreAnimate = exploreAnimateGo}} className="explore">Explore The Range</div>
+      <div style={{position:"relative", bottom:"70px"}} ref= {exploreAnimateGo => {exploreAnimate = exploreAnimateGo}} className="explore">Explore The Range</div>
       </div>
     </div>
   );

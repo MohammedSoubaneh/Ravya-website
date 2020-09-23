@@ -7,14 +7,14 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import ReactDOM from 'react-dom'
 import '../style/productPageStyle.css';
 import ProductPageHero from './ProductPageHero'
-import Product from '../Product/product';
+import ProductNew from '../Product/productNew';
 
 
 function ProductPage() {
   return (
     <div className="productPage">
         <ProductPageHero />
-        <Product />
+        <ProductNew />
         <Ending />
       </div>
   );

@@ -2,7 +2,7 @@ import React, {useRef, useEffect} from 'react';
 import Header from '../Header/header';
 import Hero from '../Hero Section/herosection'
 import OurMessage from '../Our Message/OurMessage'
-import Product from '../Product/product'
+import ProductNew from '../Product/productNew';
 import Ending from '../Ending/ending'
 import { gsap } from  'gsap';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
@@ -16,7 +16,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
     <div>
             <Hero />
             <OurMessage />
-            <Product />
+            <ProductNew />
             <Ending />
             </div>
   );

@@ -35,7 +35,7 @@ function Header() {
     <div>
         <div className="header">
             <div className="container">
-                <div ref={logoAnimate => {logoName = logoAnimate}} className="logo"><Link to="/home" style={{ textDecoration: 'none', color: "black" }}activeClassName="active-logo">Ravya</Link></div>
+                <div ref={logoAnimate => {logoName = logoAnimate}} className="logo"><Link to="/" style={{ textDecoration: 'none', color: "black" }}activeClassName="active-logo">Ravya</Link></div>
                 <div ref={hamburger => {hamburgerMenu = hamburger}} className="nav">
                 <div className="shop"><Link to="/home/products" style={{ textDecoration: 'none', color: "black" }} activeClassName="active-shop">Shop</Link></div>
                 <div className="cartIcon"></div>

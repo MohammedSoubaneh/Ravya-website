@@ -1,6 +1,7 @@
 import React, {useRef, useEffect} from 'react';
 import { gsap, Power3 } from  'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 
 function Ending() {
@@ -72,13 +73,13 @@ function Ending() {
           <div className="whyUs"><p>Why Us?</p></div>
           <div className="whyUsReason">
             <div ref={whyUsOneAnimateGo =>{whyUsOneAnimate = whyUsOneAnimateGo}} className="whyUsOne"><img src="/images/right.png" ></img>Ingredients: Turmeric, Black pepper, Nothing else.</div>
-            <div ref={whyUsTwoAnimateGo =>{whyUsTwoAnimate = whyUsTwoAnimateGo}} className="whyUsTwo"><img src="/images/right.png" ></img>Our Turmeric Fusion has upto 7X the amount of curcumin then &nbsp;&nbsp;&nbsp;&nbsp;traditional turmeric.</div>
-            <div ref={whyUsThreeAnimateGo =>{whyUsThreeAnimate = whyUsThreeAnimateGo}} className="whyUsThree"><img src="/images/right.png" ></img>We care about formulating products that are clean, simple, and &nbsp;&nbsp;&nbsp;&nbsp;delicious.</div>
+            <div ref={whyUsTwoAnimateGo =>{whyUsTwoAnimate = whyUsTwoAnimateGo}} className="whyUsTwo"><img src="/images/right.png" ></img>Our Turmeric Fusion has upto 7X the amount of curcumin then &nbsp;&nbsp;&nbsp;&nbsp;<span>traditional turmeric.</span></div>
+            <div ref={whyUsThreeAnimateGo =>{whyUsThreeAnimate = whyUsThreeAnimateGo}} className="whyUsThree"><img src="/images/right.png" ></img>We care about formulating products that are clean, simple, and &nbsp;&nbsp;&nbsp;&nbsp;<span>delicious.</span></div>
             <div ref={theRavyaWayAnimateGo =>{theRavyaWay = theRavyaWayAnimateGo}} className="theRavyaWay">Thats The Ravya Way</div>
           </div>
         </div>
         <div className="recipeContainer">
-          <div className="recipe">Recipe</div>
+          <div className="recipe"><Link to="/Recipe" style={{ textDecoration: 'none', color: "black", }}activeClassName="active-logo">Recipe</Link></div>
           <div className="recipeName">
           <div className="recipeOne"></div>
           <div className="recipeTwo"></div>

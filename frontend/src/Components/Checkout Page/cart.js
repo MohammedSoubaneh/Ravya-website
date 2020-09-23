@@ -1,77 +1,87 @@
-import React, {useRef, useState, useEffect} from 'react';
-import { gsap, Power3 } from  'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger'
+import React, {useRef, useEffect, useState, Component} from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import axios from 'axios';
+import { addToCart, removeFromCart } from '../../actions/cartAction';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadStripe } from '@stripe/stripe-js';
 
+function Cart(props) {
 
-
-
-
-function Cart() { 
-
+  const cart = useSelector(state => state.cart);
+  const { cartItems } = cart;
+  const productId = props.match.params.id;
+  const qty = props.location.search ? Number(props.location.search.split("=")[1]) : 1;
+  const dispatch = useDispatch();
+  const removeFromCartHandler = (productId) => {
+    dispatch(removeFromCart(productId, qty));
+  }
+  useEffect(() => {
+    if (productId) {
+      dispatch(addToCart(productId, qty));
+    }
+  }, []);
   
 
-
-      const price = document.getElementsByClassName("cartPriceOne");
-      console.log(price.length);
-      
-
-
-
-      function hiddenCartOne() {
-        document.querySelector(".hiddenCart").style.display = "none";
-      };
-
-
-      const [products] = useState([
+  return (
+      <div className="cart">
+    <div className="cart-list">
+      <ul className="cart-list-container">
+          <h3 className="bag">
+            My Bag
+          </h3>
         {
-          title: 'For Your Health',
-          name: 'Ravya Turmeric Infion 25pc',
-          cost: '19.99',
-          image: '/images/25pc.png'
-        },
-      ]);
-    
-      const [productsTwo] = useState ([
-          {
-                title: 'For Your Creativity',
-                name: 'Ravya Turmeric Infion 15pc',
-                cost: '14.99',
-                image: '/images/15pc.png'
-          }
-      ]);
-      
-      const [productsThree] = useState ([
-          {
-                title: 'For Your Someone Special',
-                name: 'Ravya Turmeric Infion 2pc',
-                cost: '4.99',
-                image: '/images/2pc.png'
-          }
-      ]);
+          cartItems.length === 0 ?
+            <div className="dummyCart">
+              Cart is empty
+          </div>
+            :
+            cartItems.map(item =>
+              <li>
+                <div className="cart-image">
+                  <img src={item.image} alt="product" width="100px"/>
+                </div>
+                <div className="cart-name">
+                  <div className="cartName">
+                    <Link to={"/products/" + item.product}  style={{ textDecoration: 'none', color: "black" }} activeClassName="active-name">
+                      {item.name}
+                    </Link>
 
-      const [cart, setCart] = useState([])
+                  </div>
+                  <div className="qtySection">
+                    Qty:&nbsp;
+                  <select value={item.qty} onChange={(e) => dispatch(addToCart(item.product, e.target.value))}>
+                      {[...Array(item.countInStock).keys()].map(x =>
+                        <option className="qty" key={x + 1} value={x + 1}>{x + 1}</option>
+                      )}
+                    </select>
+                    <div type="button" className="buttonRemove" onClick={() => removeFromCartHandler(item.product)} >
+                      Delete
+                    </div>
+                  </div>
+                </div>
+                <div className="cart-price">
+                  ${item.price}
+                </div>
+              </li>
+            )
+        }
+      </ul>
 
-      const addToCartTwo = (products) => {
-        setCart([...cart, products])
-      }
-      
+    </div>
+    <div className="cart-action">
+      <h3 className="subTotal">
+        Subtotal {/*({cartItems.reduce((a, c) => a + c.qty, 0)} items)*/}
+        :
+         $ {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+      </h3>
+      <div className="buttonPrimaryMove" disabled={cartItems.length === 0} role="link">
+        Proceed to Checkout
+      </div>
 
-return (
-  <div className="hiddenCart">
-            {cart.map((productsTwo, idxOne) => (
-       <div className="productOne" key={idxOne}>
-         <h1>{productsTwo.title}</h1>
-         <Link to="/Ravya-25pc"><img src={productsTwo.image} width="400px"/></Link>   
-         <div className="prices">{productsTwo.cost}</div>        
-           <p className="addTo">Add To Cart</p>
-           
-           </div>
-           
-      ))}
-        <button onClick={() => addToCartTwo(productsTwo)}>Add To Cart</button>                                
-        </div>
-  );
+    </div>
+
+  </div>
+  )
 }
 
-export default Cart;
+export default Cart
