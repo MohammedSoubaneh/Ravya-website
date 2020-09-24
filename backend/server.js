@@ -3,7 +3,7 @@ import data from './data';
 
 
 
-
+const path = require('path');
 const app  = express();
 const PORT = process.env.PORT || 5000;
 
@@ -25,8 +25,12 @@ app.get("/api/products/cart/", (req, res) => {
     res.send(data.products); 
 }); 
 
+app.get('*', (request, response) => {
+	response.sendFile(path.join(__dirname, '../frontend/build'));
+});
+
 if(process.env.NODE_ENV === 'production') {
-    app.use(express.static('ravya-website/frontend/build'))
+    app.use(express.static('../frontend/build'))
 }
 
 app.listen(PORT, () => { console.log(`Server started at ${PORT}`)});
