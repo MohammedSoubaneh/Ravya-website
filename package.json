@@ -25,6 +25,7 @@
     "mongoose": "^5.10.6",
     "stripe": "^8.96.0"
   },
+  "homepage": "https://github.com/MohammedSoubaneh/new-react",
   "engines": {
     "node": "12.18.0",
     "npm": "6.14.4"
