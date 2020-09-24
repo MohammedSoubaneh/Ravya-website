@@ -4,8 +4,6 @@ var _express = _interopRequireDefault(require("express"));
 
 var _data = _interopRequireDefault(require("./data"));
 
-var _config = _interopRequireDefault(require("./config"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var app = (0, _express["default"])();
