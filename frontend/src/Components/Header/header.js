@@ -1,9 +1,6 @@
-import React, {useRef, useEffect, Component} from 'react';
+import React, {useRef, useEffect } from 'react';
 import { gsap, Power3 } from  'gsap';
-import { BrowserRouter as Router, Route, Switch, Link, NavLink } from 'react-router-dom';
-import Home from '../HomePage/Home';
-import ProductPage from '../ProductPage/productPage';
-import Cart from '../Checkout Page/cart';
+import { Link } from 'react-router-dom';
 
 function Header() {
     let logoName = useRef(null)

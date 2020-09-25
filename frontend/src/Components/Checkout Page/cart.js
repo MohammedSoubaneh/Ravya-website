@@ -1,9 +1,8 @@
-import React, {useRef, useEffect, useState, Component} from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { addToCart, removeFromCart } from '../../actions/cartAction';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadStripe } from '@stripe/stripe-js';
 
 function Cart(props) {
 

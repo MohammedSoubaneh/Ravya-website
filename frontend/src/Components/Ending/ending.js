@@ -1,7 +1,7 @@
 import React, {useRef, useEffect} from 'react';
 import { gsap, Power3 } from  'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 function Ending() {
@@ -72,9 +72,9 @@ function Ending() {
         <div className="whyUsContainer">
           <div className="whyUs"><p>Why Us?</p></div>
           <div className="whyUsReason">
-            <div ref={whyUsOneAnimateGo =>{whyUsOneAnimate = whyUsOneAnimateGo}} className="whyUsOne"><img src="/images/right.png" ></img>Ingredients: Turmeric, Black pepper, Nothing else.</div>
-            <div ref={whyUsTwoAnimateGo =>{whyUsTwoAnimate = whyUsTwoAnimateGo}} className="whyUsTwo"><img src="/images/right.png" ></img>Our Turmeric Fusion has upto 7X the amount of curcumin then &nbsp;&nbsp;&nbsp;&nbsp;<span>traditional turmeric.</span></div>
-            <div ref={whyUsThreeAnimateGo =>{whyUsThreeAnimate = whyUsThreeAnimateGo}} className="whyUsThree"><img src="/images/right.png" ></img>We care about formulating products that are clean, simple, and &nbsp;&nbsp;&nbsp;&nbsp;<span>delicious.</span></div>
+            <div ref={whyUsOneAnimateGo =>{whyUsOneAnimate = whyUsOneAnimateGo}} className="whyUsOne"><img src="/images/right.png" alt="first-arrow" ></img>Ingredients: Turmeric, Black pepper, Nothing else.</div>
+            <div ref={whyUsTwoAnimateGo =>{whyUsTwoAnimate = whyUsTwoAnimateGo}} className="whyUsTwo"><img src="/images/right.png" alt="second-arrow"  ></img>Our Turmeric Fusion has upto 7X the amount of curcumin then &nbsp;&nbsp;&nbsp;&nbsp;<span>traditional turmeric.</span></div>
+            <div ref={whyUsThreeAnimateGo =>{whyUsThreeAnimate = whyUsThreeAnimateGo}} className="whyUsThree"><img src="/images/right.png" alt="third-arrow" ></img>We care about formulating products that are clean, simple, and &nbsp;&nbsp;&nbsp;&nbsp;<span>delicious.</span></div>
             <div ref={theRavyaWayAnimateGo =>{theRavyaWay = theRavyaWayAnimateGo}} className="theRavyaWay">Thats The Ravya Way</div>
           </div>
         </div>
@@ -93,8 +93,8 @@ function Ending() {
           <div className="terms"> Policies & Terms</div>
           <div className="partnership">Partnership</div>
           <div className="contact">Contact</div>
-          <div className="facebook"><img src="images/facebook.png"></img></div>
-          <div className="instagram"><img src="images/instagram.png"></img></div>
+          <div className="facebook"><img src="images/facebook.png" alt="facebook"></img></div>
+          <div className="instagram"><img src="images/instagram.png" alt="instagram"></img></div>
           <div className="twitter"></div>
         </div>
       </div>

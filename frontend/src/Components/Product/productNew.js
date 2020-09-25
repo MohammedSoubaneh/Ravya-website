@@ -1,10 +1,9 @@
-import React, {useRef, useEffect, useState, Component} from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { listProducts } from '../../actions/productAction';
 import { motion } from "framer-motion"
-import useMediaQuery from "../windowHooks/productsWindowHooks";
 
 
 function ProductNew(props) {
@@ -14,15 +13,6 @@ function ProductNew(props) {
   const productList = useSelector(state => state.productList);
   const { products, loading, error } = productList;
   const dispatch = useDispatch();
-  const isIpad = useMediaQuery('(min-width: 1025px)');
-  const productStyle = {
-    container: isIpad => ({
-      position: "relative",
-      right:"300px",
-      left:"60px"
-    })
-
-  };
 
   useEffect(() => {
     dispatch(listProducts ());

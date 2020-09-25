@@ -1,8 +1,5 @@
-import React, {useRef, useEffect} from 'react';
-import { gsap, Power3 } from  'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import {motion, AnimatePresence} from 'framer-motion';
+import React from 'react';
+import {motion} from 'framer-motion';
 
 function Recipe () {
     const transitionDelay = { delay: 1, duration: 2, ease: [0.6, 0.01, -0.1, 0.96] };
@@ -36,7 +33,7 @@ function Recipe () {
             <div className="nextRecipe">
                 <div className="readNext">Next Recipe</div>
                 <div className="nameOfRecipe">Lorem ipsum dolor sit amet, consectetur</div>
-                <div className="nextImage"><img /></div>
+                <div className="nextImage"></div>
             </div>
         </motion.div>
     );

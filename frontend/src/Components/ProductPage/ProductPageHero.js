@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../Header/header';
 import {motion} from 'framer-motion';
 
 function ProductPageHero(){

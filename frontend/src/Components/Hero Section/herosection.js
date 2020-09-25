@@ -7,7 +7,6 @@ function Hero() {
   let bannerBgAnimate = useRef(null)
   let bannerBgAdditionAnimate = useRef(null)
   let bannerBgWhiteAnimate = useRef(null)
-  let testTextAnimate = useRef(null)
 
   let bannerTL = gsap.timeline()
 

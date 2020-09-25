@@ -1,10 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { detailsProduct } from '../../actions/productAction';
-import {motion, AnimatePresence} from 'framer-motion';
-import { gsap, Power3 } from  'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger'
+import {motion} from 'framer-motion';
 
 
 

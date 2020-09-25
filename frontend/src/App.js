@@ -1,23 +1,15 @@
-import React, {useRef, useEffect, useState, Component} from 'react';
+import React, {useRef, useEffect} from 'react';
 import './style.css';
 import Header from './Components/Header/header';
-import Hero from './Components/Hero Section/herosection';
-import OurMessage from './Components/Our Message/OurMessage';
-import Product from './Components/Product/product';
-import Ending from './Components/Ending/ending';
-import { gsap } from  'gsap';
 import useWindowSize from './hooks/useWindowSize';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import ProductPage from './Components/ProductPage/productPage'
 import Home from './Components/HomePage/Home'
-import ProductPageHero from './Components/ProductPage/ProductPageHero';
 import RavyaProductPageLarge from './Components/Product/ravya25pc';
 import RecipePage from './Components/Recipe Page/recipePage';
 import ScrollToTop from "./Components/ScrollTop/scrollTop";
 import Cart from './Components/Checkout Page/cart';
-import data from './Components/data/data';
-import ProductNew from './Components/Product/productNew';
-import {motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 
 
