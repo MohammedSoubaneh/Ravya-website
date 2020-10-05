@@ -1,5 +1,6 @@
 $ipad: 1025px;
 $iphone: 500px;
+$ipadmedium: 700px;
 
 .app{
     position: fixed;
@@ -8,7 +9,8 @@ $iphone: 500px;
     height: 100%;
     width: 100%;
     overflow: hidden;
-.header {
+
+    .header {
     width: 100%;
     height: 100px;
     font-family: 'Playfair Display SC', serif;
@@ -65,6 +67,10 @@ $iphone: 500px;
         @media screen and (max-width: $iphone) {
             height: 60vh;
         }
+        @media screen and (max-width: $ipad) {
+            grid-row: span 2;
+            height: 80vh;
+        }
         .bannerBg {
             background: lightblue;
             position: relative;
@@ -93,49 +99,64 @@ $iphone: 500px;
         }
     }
     .heroSection {
-        grid-column: 1/24;
+        z-index: 10;
+        grid-column: 1 / 24;
         grid-row: span 9;
         display: grid;
-        grid-template-columns: repeat(23, 1fr);
+        grid-template-columns: repeat( 23, 1fr);
         grid-template-rows: repeat(23, 1fr);
         font-family: 'Playfair Display SC', serif;
+        height: 60vh;
+        width: 80vw;
+
         @media screen and (max-width: $iphone) {
             grid-row: span 6;
         }
         .heroText {
             grid-column: 4 / 14;
             grid-row: 4 / -12;
-            font-size: 5rem;
+            font-size: 4vw;
             font-weight: 500;
             opacity: 0;
+            height: 20vh;
+            width: 40vw;
             @media screen and (max-width: $ipad) {
-                grid-column: 3 / 9;
-                font-size: 48px;
+                grid-column: 4 / 14;
                 font-weight: 500;
                 opacity: 0;
+                width: 70vw;
+                font-size: 6vw;
             }
             @media screen and (max-width: $iphone){
-                font-size: 36px;
+                grid-column: 1;
+                width: 70vw;
+            }
+            @media screen and (max-width: $ipadmedium){
                 grid-column: 2 / 7;
             }
         }
         .heroSubText {
             grid-column: 4 / 12;
-            grid-row: 11 / -8;
-            font-size: 2rem;
+            grid-row: 12 / -8;
+            font-size: 2vw;
             font-weight: 500;
             opacity: 0;
+            height: 20vh;
+            width: 30vw;
+
             @media screen and (max-width: $ipad) {
-                grid-column: 3 / 12;
-                font-size: 2rem;
-                font-weight: 500;
-                opacity: 0;
+                grid-column: 2 / 12;
+                position: relative;
+                bottom: 5rem;
+                width: 70vw;
+                font-size: 4vw;
             }
             @media screen and (max-width: $iphone){
-                font-size: 20px;
+
                 grid-column: 2 / 6;
                 position: relative;
-                bottom: 6rem;
+                bottom: 9rem;
+                width: 70vw;
             }
         }
 
@@ -143,33 +164,33 @@ $iphone: 500px;
 }
 .sectionTwoGrid {
     display: grid;
-    grid-template-columns: repeat(23, 1fr);
+    grid-template-columns: repeat( 23, 1fr);
     grid-auto-rows: 100px;
     .whoWeAre {
-        grid-column: 1/24;
+        grid-column: 1 / 24;
         grid-row: span 18;
         display: grid;
         grid-template-columns: repeat(23, 1fr);
         grid-template-rows: repeat(23, 1fr);
         
         .ourMessage {
+            text-align: center;
+            font-size: 3rem;
             grid-column: 1 / 24;
             grid-row: 5;
-            font-size: 3rem;
-            position: relative;
-            left: 60px;
-            text-align: center;
-            opacity: 0;
+            line-height: 64px;
+            margin: auto;
+            width: 100%;
+            padding: 100px;
             font-family: 'Playfair Display SC', serif;
             @media screen and (max-width: $ipad){
-                grid-column: 1 / 24;
                 grid-row: 5;
                 font-size: 36px;
-                position: relative;
-                left: 60px;
                 text-align: center;
                 opacity: 0;
                 font-family: 'Playfair Display SC', serif;
+                position: relative;
+                right: 20px;
             }
             @media screen and (max-width: $iphone){
                 font-size: 18px;
@@ -177,46 +198,34 @@ $iphone: 500px;
 
         }
         .standard {
-            text-align: center;
             font-size: 3rem;
-            grid-column: 1 / 24;
+            grid-column: 1 / 20;
             grid-row: 10;
             font-family: 'Spectral', serif;
-            @media screen and (max-width: $iphone){
-                font-size: 18px;
-                grid-column: 4;
-                position: relative;
-                right: 10px;
-            }
-            p {
+            text-align: center;
+            line-height: 64px;
+            margin: auto;
+            width: 100%;
+            padding: 100px;
+            @media screen and (max-width: $ipad){
+                font-size: 36px;
                 text-align: center;
-                line-height: 64px;
-                margin: auto;
-                width: 75%;
-                padding: 100px;
+                font-family: 'Playfair Display SC', serif;
                 position: relative;
-                left: 20px;
-                @media screen {
-                    font-size: 36px;
-                    text-align: center;
-                    line-height: 64px;
-                    margin: auto;
-                    width: 75%;
-                    padding: 100px;
-                    position: relative;
-                    left: 20px;
-                }
-                @media screen and (max-width: $iphone){
-                    font-size: 18px;
-                    position: relative;
-                    width: 300px;             
-                }
+                right: 30px;
+            }
+            @media screen and (max-width: $iphone){
+                text-align: center;
+                font-size: 18px;
+                width: 75%;
             }
         }
         .about {
             font-size: 48px;
             grid-column: 1 / 24;
+            text-align: center;
             grid-row: 14;
+            width: 100%;
             opacity: 0;
             font-family: 'Playfair Display SC', serif;
             @media screen and (max-width: $ipad) {
@@ -761,53 +770,15 @@ $iphone: 500px;
                 }
 
                 img {
-                    position: relative;
-                    left: 8rem;
-                    top: 6rem;
+                    grid-column: 12;
+                    grid-row: 4;
                     opacity: 1;
                     @media screen and (max-width: $ipad) {
-                        position: absolute; 
-                        left: 300px;
-                        top: 150px;
                     }
                     @media screen and (max-width: $iphone) {
                         width: 400px;
-                        position: relative;
-                        left: 50px;
                     }
                 }
-            }
-            .heroImageMedium {
-                grid-column: 1 / 15;
-                grid-row: span 28;
-                background-color: lightgrey;
-            }
-            .productImageMedium {
-                grid-column: 15 / 24;
-                grid-row: span 20;
-                display: grid;
-                grid-template-columns: repeat(23, 1fr);
-                grid-template-rows: repeat(23, 1fr);
-                background-image: url(/Images/15pc.png);
-                background-size: 400px, 350px;
-                background-repeat: no-repeat;
-                background-position: 50% 25%;
-            }
-            .heroImageSmall {
-                grid-column: 1 / 15;
-                grid-row: span 28;
-                background-color: lightgrey;
-            }
-            .productImageSmall {
-                grid-column: 15 / 24;
-                grid-row: span 20;
-                display: grid;
-                grid-template-columns: repeat(23, 1fr);
-                grid-template-rows: repeat(23, 1fr);
-                background-image: url(/Images/2pc.png);
-                background-size: 400px, 350px;
-                background-repeat: no-repeat;
-                background-position: 50% 25%;
             }
             .productText {
                 grid-column: 1 / 24;
@@ -819,9 +790,10 @@ $iphone: 500px;
                 top: 6rem;
                 @media screen and (max-width: $ipad) {
                     text-align: center;
+                    grid-column: 12;
                 }
                 @media screen and (max-width: $iphone) {
-                    
+                    grid-column: 12;
                 }
                 h1{
                     grid-column: 3 / 24;
@@ -1023,7 +995,7 @@ $iphone: 500px;
             background-color: darkgrey;
             .heroText {
                 grid-column: 1 / 24;
-                grid-row: span 8;
+                grid-row: span 5;
                 font-size: 8rem;
                 text-align: center;
                 display: flex;
@@ -1044,9 +1016,13 @@ $iphone: 500px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                font-size: 2rem;
+                font-size: 1.8vw;
+                background-color: lightgreen;
+                @media screen and (max-width: $ipad) {
+                    font-size: 3vw;
+                }
                 @media screen and (max-width: $iphone) {
-                    font-size: 24px;
+                    font-size: 3vw;
                 }
             }
             .instructionContainer {
@@ -1065,38 +1041,40 @@ $iphone: 500px;
                     left: 4rem;
                     top: 5rem;
                     z-index: 10;
-                    
+                    @media screen and (max-width: $ipad) {
+                        grid-row: span 6;
+                    }
+                    @media screen and (max-width: $iphone) {
+                        grid-row: span 4;
+                    }
                     p{
-                        font-size: 2rem;
+                        padding-top: 50px;
+                        font-size: 1vw;
                         text-align: center;
                         @media screen and (max-width: $ipad) {
-                            font-size: 24px;
+                            font-size: 3vw;
                         }
                         @media screen and (max-width: $iphone) {
-                            font-size: 14px;
-                            position: relative;
-                            right: 15px;
-                            left: 50px;
+                            font-size: 3vw;
+
                         }
                     }
                     ul {
-                        font-size: 1.5rem;
+                        font-size: 1vw;
+                        padding-top: 50px;
+                        padding-left: 50px;
                         @media screen and (max-width: $iphone) {
-                            font-size: 12px;
-                            position: relative;
-                            right: 70px;
+                            padding-left: 20px;
+
+                        }
+                        @media screen and (max-width: $ipad) {
+                            padding-left: 40px;
                         }
                         li {
-                            position: relative;
-                            left: 4rem;
-                            top: 4rem;
                             @media screen and (max-width: $ipad) {
-                                font-size: 14px;
+                                font-size: 2vw;
                             }
                             @media screen and (max-width: $iphone) {
-                                font-size: 12px;
-                                position: relative;
-                                right: 60px;
                             }
                             
                         }
@@ -1118,7 +1096,7 @@ $iphone: 500px;
                 grid-gap: 20px;
                 .howToMake {
                     grid-column: 4 / 20;
-                    font-size: 2rem;
+                    font-size: 2vw;
                     display: flex;
                     align-items: center;
                     grid-row: span 3;
@@ -1128,12 +1106,12 @@ $iphone: 500px;
                 .instuctionOne {
                     grid-column: 5 / 20;
                     justify-content: center;
-                    font-size: 1.5rem;
+                    font-size: 1.3vw;
                     @media screen and (max-width: $ipad) {
-                        font-size: 24px;
+                        font-size: 1.7vw;
                     }
                     @media screen and (max-width: $iphone) {
-                        font-size: 14px;
+                        font-size: 2vw;
                     }
                 }
             }
@@ -1147,7 +1125,7 @@ $iphone: 500px;
                     grid-column: 1 / 24;
                     display: flex;
                     justify-content: center;
-                    font-size: 4rem;
+                    font-size: 3.3vw;
                     z-index: 3;
                     @media screen and (max-width: $ipad) {
 
@@ -1160,14 +1138,14 @@ $iphone: 500px;
                     grid-column: 1 / 24;
                     display: flex;
                     justify-content: center;
-                    font-size: 7rem;
+                    font-size: 5vw;
                     text-align: center;
                     z-index: 3;
                     @media screen and (max-width: $ipad) {
-                        font-size: 48px;
+ 
                     }
                     @media screen and (max-width: $iphone) {
-                        font-size: 24px;
+
                     }
                 }
                 .nextImage{
@@ -1312,6 +1290,8 @@ $iphone: 500px;
         font-weight: 500;
         display: grid;
         grid-template-columns: repeat(autofit, 23, 1fr);
+        background-color: lightgreen;
+        height: 100vh;
         @media screen and (max-width: $ipad) {
             position: relative;
             right: 50px;
@@ -1393,7 +1373,6 @@ $iphone: 500px;
         }
         .subTotal {
             position: relative;
-            top: 150px;
             left: 350px;
             @media screen and (max-width: $ipad) {
                 position: relative;
@@ -1410,7 +1389,6 @@ $iphone: 500px;
         }
         .buttonPrimaryMove {
             position: relative;
-            top: 190px;
             left: 350px;
             border: 1px solid black;
             width: 1350px;
@@ -1464,6 +1442,146 @@ $iphone: 500px;
         }
         @media screen and (max-width: $iphone) {
             
+        }
+    }
+
+
+    .cartContainer {
+        font-family: 'Spectral', serif;
+        display: grid;
+        grid-template-columns: repeat(23, 1fr);
+        grid-auto-rows: 100px;
+        .innerCartContainer {
+            background-color: lightgreen;
+            grid-column: 1 / 24;
+            grid-row: span 3;
+            display: grid;
+            grid-template-columns: repeat(23, 1fr);
+            .mainTitle {
+                grid-column: 1 / 24;
+                display: grid;
+                grid-template-columns: repeat(23, 1fr);
+                .myBag {
+                    grid-column: 4 / 10;
+                    font-size: 2vw;
+                    padding: 20px;
+                    @media screen and (max-width: $ipad) {
+                        font-size: 3vw;
+                        
+                    }
+                    @media screen and (max-width: $iphone) {
+                        
+                    }
+                }
+                .empty {
+                    grid-column: 12 / 20;
+                    @media screen and (max-width: $ipad) {
+
+                    }
+                    @media screen and (max-width: $iphone) {
+                        
+                    }
+                }
+            }
+            .cartIteams {
+                grid-column: 1 / 24;
+                display: grid;
+                grid-template-columns: repeat(23, 1fr);
+                grid-auto-rows: 50px;
+                padding: 50px;
+                position: relative;
+                .cartImage {
+                    grid-column: 4 / 7;
+                    width: 5vw;
+                    height: 10vh;
+                    background-color: grey;
+                    @media screen and (max-width: $ipad) {
+                        grid-column: 3 / 5;
+                        width: 100px;
+                    }
+                    @media screen and (max-width: $iphone) {
+                        grid-column: 2 / 5;
+                        width: 100px;
+                        height: 100px;
+                    }
+                }
+                .cartNames {
+                    grid-column: 8 / 12;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 1vw;
+                    @media screen and (max-width: $ipad) {
+                        font-size: 1.5vw;
+                        grid-column: 10 / 16;
+                    }
+                    @media screen and (max-width: $iphone) {
+                        font-size: 2vw;
+                    }
+                }
+                .qtyOuter {
+                    grid-column: 12 / 18;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 1vw;
+                    @media screen and (max-width: $ipad) {
+                        grid-column: 16 / 23;
+                        font-size: 1.5vw;
+                    }
+                    @media screen and (max-width: $iphone) {
+                        font-size: 2vw;
+                    }
+                    .removeButton {
+                        cursor: pointer;
+                    }
+                }
+                .cartPrice {
+                    grid-column: 20;
+                    font-size: 1vw;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    @media screen and (max-width: $ipad) {
+                        grid-column: 24;
+                        font-size: 1.5vw;
+                     }
+                     @media screen and (max-width: $iphone) {
+                        font-size: 3vw;
+                     }
+
+                }
+            }
+        }
+        .cartAction {
+            grid-column: 1 / 24;
+            display: grid;
+            grid-template-columns: repeat(23, 1fr);
+            position: relative;
+            top: 30px;
+            .subTotalMain {
+                grid-column: 4 / 24;
+                font-size: 2vw;
+                padding: 20px;
+                @media screen and (max-width: $ipad) {
+
+                }
+                @media screen and (max-width: $iphone) {
+                    font-size: 4vw;
+                }
+            }
+            .buttonPrimaryMain {
+                grid-column: 4 / 20;
+                border: 1px solid black;
+                text-align: center;
+                padding: 10px;
+                @media screen and (max-width: $ipad) {
+
+                }
+                @media screen and (max-width: $iphone) {
+                    
+                }
+            }
         }
     }
 }    

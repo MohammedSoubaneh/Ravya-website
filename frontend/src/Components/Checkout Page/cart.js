@@ -22,64 +22,44 @@ function Cart(props) {
   
 
   return (
-      <div className="cart">
-    <div className="cart-list">
-      <ul className="cart-list-container">
-          <h3 className="bag">
-            My Bag
-          </h3>
-        {
-          cartItems.length === 0 ?
-            <div className="dummyCart">
-              Cart is empty
-          </div>
-            :
-            cartItems.map(item =>
-              <li>
-                <div className="cart-image">
-                  <img src={item.image} alt="product" width="100px"/>
-                </div>
-                <div className="cart-name">
-                  <div className="cartName">
-                    <Link to={"/products/" + item.product}  style={{ textDecoration: 'none', color: "black" }} activeClassName="active-name">
+      <div className="cartContainer">
+           <div className="innerCartContainer">
+               <div className="mainTitle">
+               <div className="myBag">My Bag</div>
+               </div>
+               {
+               cartItems.length === 0 ?
+               <div className="empty">Cart is empty</div>
+               :
+               cartItems.map(item =>
+            <div className="cartIteams">
+                <div className="cartImage"><img src={item.image} alt="product" width="100px"/></div>
+                <div className="cartNames"><Link to={"/products/" + item.product}  style={{ textDecoration: 'none', color: "black" }} activeClassName="active-name">
                       {item.name}
-                    </Link>
-
-                  </div>
-                  <div className="qtySection">
-                    Qty:&nbsp;
-                  <select value={item.qty} onChange={(e) => dispatch(addToCart(item.product, e.target.value))}>
+                    </Link></div>
+                <div className="qtyOuter">
+                    <div className="qtyInner">
+                        Qty:&nbsp; <select value={item.qty} onChange={(e) => dispatch(addToCart(item.product, e.target.value))}>
                       {[...Array(item.countInStock).keys()].map(x =>
                         <option className="qty" key={x + 1} value={x + 1}>{x + 1}</option>
                       )}
                     </select>
-                    <div type="button" className="buttonRemove" onClick={() => removeFromCartHandler(item.product)} >
-                      Delete
                     </div>
-                  </div>
+                    <div className="removeButton" type="button" onClick={() => removeFromCartHandler(item.product)}>&nbsp;Delete</div>
                 </div>
-                <div className="cart-price">
-                  ${item.price}
-                </div>
-              </li>
-            )
-        }
-      </ul>
+                <div className="cartPrice">${item.price}</div>
+            </div>
+               )
+            }
+            <div className="cartAction">
+               <div className="subTotalMain">
+                   Subtotal{/*({cartItems.reduce((a, c) => a + c.qty, 0)} items)*/}:&nbsp;${cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+                   </div>
+               <div className="buttonPrimaryMain" disabled={cartItems.length === 0} role="link">Proceed to Checkout</div>
+           </div>
+           </div>
+        </div>
 
-    </div>
-    <div className="cart-action">
-      <h3 className="subTotal">
-        Subtotal {/*({cartItems.reduce((a, c) => a + c.qty, 0)} items)*/}
-        :
-         $ {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
-      </h3>
-      <div className="buttonPrimaryMove" disabled={cartItems.length === 0} role="link">
-        Proceed to Checkout
-      </div>
-
-    </div>
-
-  </div>
   )
 }
 

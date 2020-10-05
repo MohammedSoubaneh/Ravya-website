@@ -40,11 +40,9 @@ function OurMessage() {
     <div className="sectionTwoGrid">
       <div className="whoWeAre">
       <div ref= {ourMessageAnimateGo => {ourMessageAnimate = ourMessageAnimateGo}} className="ourMessage">Setting New Standards </div>
-      <div className="imageOne"></div>
-      <div className="imageTwo"></div>
-      <div className="standard"><p>Inside each Sache of Ravya Turmeric Infusion lies 5 different kinds of turmeric, blended to
-perfection.</p></div>
-      <div ref= {aboutAnimateGo => {aboutAnimate = aboutAnimateGo}} className="about"><p>Simple, Clean, and Delicious </p></div>
+      <div className="standard">Inside each Sache of Ravya Turmeric Infusion lies 5 different kinds of turmeric, blended to
+perfection.</div>
+      <div ref= {aboutAnimateGo => {aboutAnimate = aboutAnimateGo}} className="about">Simple, Clean, and Delicious</div>
       <div style={{position:"relative", bottom:"70px"}} className="explore">Explore The Range</div>
       </div>
     </div>
