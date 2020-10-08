@@ -32,7 +32,7 @@ function ProductNew(props) {
       <div className="ravyaProducts" key={idx}>
       <div className="ravyaName" style={{position:"relative", bottom:products.headerTop}}>{products.name}</div>
       <div className="images"><Link to ={'/products/' + products._id}><motion.img layout whileHover={{scale: 1.1}} whileTap={{ scale: 0.9}} transition={transition} src ={products.image} alt={products.name} width={products.size}/></Link></div>
-      <div className="pricing" style={{position:"relative", bottom:products.pixelTop}}>${products.price}</div>
+      <div className="pricing">${products.price}</div>
       </div>
       ))}
       </div>

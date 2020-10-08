@@ -37,10 +37,10 @@ function RavyaProductPageLarge(props){
                 <>
                 <div className="largeHeroContainer">
                 <div className="largeHeroInner">
-                <div className="heroImage"></div>
+                <div className="heroImage"><img width="1025px" src={product.heroImage}/></div>
                 
                 <div className="productImage">
-                <motion.img initial={{opacity: 0, y: 40}} animate={{opacity: 1, y: 0}} transition={transitionDelay}  src={product.image} width="500px"/>
+                <motion.img initial={{opacity: 0, y: 40}} animate={{opacity: 1, y: 0}} transition={transitionDelay}  src={product.image} width={product.productWidth}/>
                 <div className="productText">
                     <motion.h1 initial={{opacity: 0, y: 40}} animate={{opacity: 1, y: 0}} transition={transition}>{product.title}</motion.h1>
                     <motion.h2 initial={{opacity: 0, y: 40}} animate={{opacity: 1, y: 0}} transition={transition}>{product.name}</motion.h2>

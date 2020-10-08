@@ -16,7 +16,7 @@ function OurMessage() {
           trigger: ourMessageAnimate
         },
         delay: .5,
-        x: -60,
+        x: -101,
         ease: Power3.easeOut,
         opacity: 1
       }
