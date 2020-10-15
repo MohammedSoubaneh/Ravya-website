@@ -108,7 +108,7 @@ function Product() {
       title: 'For Your Health',
       name: 'Ravya Turmeric Infion 25pc',
       cost: '19.99',
-      image: '/images/25pc.png'
+      image: 'https://i.ibb.co/ZcrSD94/New25pc.jpg'
     },
   ]);
 
@@ -117,7 +117,7 @@ function Product() {
             title: 'For Your Creativity',
             name: 'Ravya Turmeric Infion 15pc',
             cost: '14.99',
-            image: '/images/15pc.png'
+            image: 'https://i.ibb.co/cvLBdMc/New15pc.jpg'
       }
   ]);
   
@@ -126,7 +126,7 @@ function Product() {
             title: 'For Your Someone Special',
             name: 'Ravya Turmeric Infion 2pc',
             cost: '4.99',
-            image: '/images/2pc.png'
+            image: 'https://i.ibb.co/bNGmSqb/New2pc.jpg'
       }
   ]);
 
