@@ -863,7 +863,6 @@
   -ms-grid-row: 2;
   -ms-grid-row-span: 21;
   grid-row: 2 / 23;
-  z-index: 101;
 }
 
 @media screen and (max-width: 1025px) {
@@ -2481,5 +2480,6 @@
   border: 1px solid black;
   text-align: center;
   padding: 10px;
+  cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */
