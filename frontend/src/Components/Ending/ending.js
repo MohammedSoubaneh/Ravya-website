@@ -3,7 +3,6 @@ import { gsap, Power3 } from  'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import { Link } from 'react-router-dom';
 
-
 function Ending() {
   let whyUsOneAnimate = useRef(null)
   let whyUsTwoAnimate = useRef(null)
@@ -81,7 +80,7 @@ function Ending() {
         <div className="recipeContainer">
           <div className="recipe"><Link to="/Recipe" style={{ textDecoration: 'none', color: "black", }}activeClassName="active-logo">Recipe</Link></div>
           <div className="recipeName">
-          <div className="recipeOne"></div>
+          <div className="recipeOne"><img src="images/ravya_icecream.jpeg" /></div>
           <div className="recipeTwo"></div>
           <div className="recipeThree"></div>
           </div>

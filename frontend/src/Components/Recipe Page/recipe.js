@@ -1,7 +1,7 @@
 import React from 'react';
 import {motion} from 'framer-motion';
 
-function Recipe () {
+function Recipe (props) {
     const transitionDelay = { delay: 1, duration: 2, ease: [0.6, 0.01, -0.1, 0.96] };
     return(
         <motion.div className="recipeContainer" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={transitionDelay}>

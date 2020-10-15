@@ -41,5 +41,7 @@ export default  {
         heroImage: '/images/productImage3.jpg',
         productWidth: '700px'
     }]
-
+    
 }
+
+ 

@@ -863,6 +863,7 @@
   -ms-grid-row: 2;
   -ms-grid-row-span: 21;
   grid-row: 2 / 23;
+  z-index: 101;
 }
 
 @media screen and (max-width: 1025px) {

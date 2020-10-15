@@ -29,7 +29,7 @@ function App() {
           <Route path="/" exact={true} component={Home} />
           <Route path="/home/products" component={ProductPage} />
           <Route path="/products/:id" exact={true} component={RavyaProductPageLarge} />
-          <Route path="/Recipe" exact={true} component={RecipePage} />
+          <Route path="/recipe" exact={true} component={RecipePage} />
           <Route path="/products/cart/:id?" exact={true} component={Cart} />
         </Switch>
       </div>

@@ -27,5 +27,5 @@ export default  {
         brand: 'Ravya',
         countInStock: 500
     }]
-
+    
 }
