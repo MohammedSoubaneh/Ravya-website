@@ -23,3 +23,6 @@
       "@babel/plugin-transform-runtime"
     ]
   }
+
+  // "build": "del-cli dist  && babel backend -d dist && cd frontend && npm install && npm run build",
+    // "heroku-postbuild": "npm run build && cd frontend && npm install && npm run build"
