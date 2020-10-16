@@ -37,7 +37,7 @@ function Cart(props) {
       quantity:item.qty
       }
     ))
-    const response = await axios.post("http://localhost:5000/create-session", {cartItems:data})
+    const response = await axios.post("https://ravya.herokuapp.com/create-session", {cartItems:data})
     const session = await response.data;
     console.log("SESSION", session)
     // When the customer clicks on the button, redirect them to Checkout.
