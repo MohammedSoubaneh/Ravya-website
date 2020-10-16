@@ -9,35 +9,40 @@ var _default = {
     _id: 'Ravya-25pc',
     title: 'For Your Health',
     name: 'Ravya Turmeric Infusion 25pc',
-    image: '/images/25pc.png',
+    image: 'https://i.ibb.co/ZcrSD94/New25pc.jpg',
     price: 20.00,
     brand: 'Ravya',
     countInStock: 500,
-    size: "400px",
-    pixelTop: "50px",
+    size: "500px",
     headerTop: "30px",
-    spaceApart: "60px"
+    spaceApart: "60px",
+    heroImage: '/images/productImage.jpg',
+    productWidth: '700px'
   }, {
     _id: 'Ravya-15pc',
     title: 'For Your Creativity',
     name: 'Ravya Turmeric Infusion 15pc',
-    image: '/images/15pc.png',
+    image: 'https://i.ibb.co/cvLBdMc/New15pc.jpg',
     price: 15.00,
     brand: 'Ravya',
     countInStock: 500,
-    size: "350px",
-    headerTop: "35px"
+    size: "500px",
+    headerTop: "35px",
+    heroImage: '/images/productImage2.jpg',
+    productWidth: '700px'
   }, {
     _id: 'Ravya-2pc',
     title: 'For Someone Special',
     name: 'Ravya Turmeric Infusion 2pc',
-    image: '/images/2pc.png',
+    image: 'https://i.ibb.co/bNGmSqb/New2pc.jpg',
     price: 4.00,
     brand: 'Ravya',
     countInStock: 500,
-    size: "350px",
+    size: "500px",
     headerTop: "35px",
-    rightSpace: "60px"
+    rightSpace: "60px",
+    heroImage: '/images/productImage3.jpg',
+    productWidth: '700px'
   }]
 };
 exports["default"] = _default;
