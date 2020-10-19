@@ -1179,7 +1179,7 @@ $ipadmedium: 700px;
                     background-color: white;
                     position: relative;
                     bottom: 0rem;
-                    @media screen and (max-width: $iphone) {
+                     @media screen and (max-width: $iphone) {
                         grid-column: 5 / 20;
                     }
                 }
