@@ -6,7 +6,6 @@ var bodyParser = require('body-parser')
 const Easypost = require('@easypost/api');
 const api = new Easypost('EZAKeb57177d069a415b85711f53625a2edfmuaCFYWr1etZTbptrnZcGg');
 
-
 const path = require('path');
 const app = express();
 app.use(cors())
@@ -64,48 +63,53 @@ app.post('/api/create-shipment', async (req, res) => {
   console.log(req.body.to_address)
   const shipment = new api.Shipment({
     to_address: {
-      'name': req.body.toaddress.name,
-      'email':req.body.toaddress.email,
+      'name': req.body.to_address.name,
+      'email':req.body.to_address.email,
       'phone':req.body.to_address.phone,
       'object': req.body.to_address.address,
-      'street1': req.body.toaddress.street,
-      'city': req.body.toaddress.city,
-      'state': req.body.toaddress.state,
-      'zip': req.body.toaddress.zip,
+      'street1': req.body.to_address.street,
+      'city': req.body.to_address.city,
+      'state': req.body.to_address.state,
+      'zip': req.body.to_address.zip,
       'country':'CA',
       'residential':req.body.to_address.residential === 'residential' ? true : false
-      },
-      from_address: {
+    },
+    from_address: {
       'company': 'Ravya',
-      'street1': '1204 St-Jerome Street',
+      'street1': '1204  St-Jerome Street',
       'street2': '5th Floor',
       'city': 'St Jerome',
       'state': 'Quebec',
       'zip': 'S4P 3Y2',
       'country':'CA',
       'phone': '415-528-7555'
-      },
-      parcel: {
+    },
+    parcel: {
       'length': 9,
       'width': 6,
       'height': 2,
       'weight': 10
-      }
+    }
   });
 
   shipment.save().then(() => {
-     shipment.rates.forEach(rate => {
-       console.log(rate.carrier);
-       console.log(rate.service);
-       console.log(rate.rate);
-       console.log(rate.id);
+    console.log("SHIPMENT", shipment)
+    res.send({ shipmentFee:shipment})
+    shipment.rates.forEach(rate => {
+      console.log(rate.carrier);
+      console.log(rate.service);
+      console.log(rate.rate);
+      console.log(rate.id);
+      console.log(shipment)
+        res.send({ shipmentFee:shipment})
     });
-    shipment.buy(shipment.lowestRate(['CanadaPost'], ['First'], ))
-      .then(() => {
-        console.log(shipment.fees[1].amount)
-        res.send({ shipmentFee:shipment.fees[1].amount })
-      }
-      );
+
+    // shipment.buy(shipment.lowestRate(['USPS'], ['First']))
+    //   .then(() => {
+    //     console.log(shipment.fees[1].amount)
+    //     res.send({ shipmentFee:shipment.fees[1].amount })
+    //   }
+    //   );
   });
 })
 // shipment.postage_label.label_url, shipment.tracking_code
