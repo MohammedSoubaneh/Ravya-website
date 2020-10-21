@@ -2,6 +2,7 @@ import React, {useRef, useEffect} from 'react';
 import { gsap, Power3 } from  'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import { Link } from 'react-router-dom';
+import {motion} from 'framer-motion';
 
 
 function Ending() {
@@ -79,14 +80,14 @@ function Ending() {
           </div>
         </div>
         <div className="recipeContainer">
-          <div className="recipe"><Link to="/Recipe" style={{ textDecoration: 'none', color: "black", }}activeClassName="active-logo">Recipe</Link></div>
+          <div className="recipe">Recipe</div>
           <div className="recipeName">
-          <div className="recipeOne"></div>
-          <div className="recipeTwo"></div>
-          <div className="recipeThree"></div>
+          <div className="recipeOne"><Link to="Recipe/Chickpea"></Link></div>
+          <div className="recipeTwo"><Link to="Recipe/Rice"></Link></div>
+          <div className="recipeThree"><Link to="Recipe/IceCream"></Link></div>
           </div>
         </div>
-        <div className="footerContainer">
+        {/* <div className="footerContainer">
           <div className="eMail">Send Us An E-mail</div>
           <div className="emailSend"><form><input type="text" id="email" name="email" placeholder="Email@email.ca"/></form></div>
           <div className="signUp">Sign up to recieve 10% off your First order. By signing up I agree the Ravya’s terms and conditions.</div>
@@ -96,7 +97,7 @@ function Ending() {
           <div className="facebook"><img src="images/facebook.png" alt="facebook"></img></div>
           <div className="instagram"><img src="images/instagram.png" alt="instagram"></img></div>
           <div className="twitter"></div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

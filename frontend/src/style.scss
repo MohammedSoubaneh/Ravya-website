@@ -3,13 +3,11 @@ $iphone: 500px;
 $ipadmedium: 700px;
 
 .app{
-    top: 0;
-    left: 0;
-
     .header {
     width: 100%;
     height: 100px;
     font-family: 'Playfair Display SC', serif;
+    
     @media screen and (max-width: $ipad){
         background-color: green;
     }
@@ -59,7 +57,6 @@ $ipadmedium: 700px;
     grid-auto-rows: 100px;
     background-image: url(./Components/image/heroImage.jpg);
     background-repeat: no-repeat;
-    background-size: 100%;
    @media screen and (max-width: $ipad) {
         background-image: none;
    }
@@ -119,7 +116,6 @@ $ipadmedium: 700px;
         font-family: 'Playfair Display SC', serif;
         height: 60vh;
         width: 80vw;
-        
 
         @media screen and (max-width: $iphone) {
             grid-row: span 3;
@@ -181,12 +177,14 @@ $ipadmedium: 700px;
     display: grid;
     grid-template-columns: repeat( 23, 1fr);
     grid-auto-rows: 100px;
+
     .whoWeAre {
         grid-column: 1 / 24;
         grid-row: span 18;
         display: grid;
-        grid-template-columns: repeat(23, 1fr);
+        grid-template-columns: repeat( 23, 1fr);
         grid-template-rows: repeat(23, 1fr);
+        
         @media screen and (max-width: $iphone) {
             grid-row: span 10;
         }
@@ -197,8 +195,6 @@ $ipadmedium: 700px;
             grid-column: 1 / 24;
             grid-row: 5;
             line-height: 64px;
-            margin: auto;
-            width: 100%;
             padding: 100px;
             font-family: 'Playfair Display SC', serif;
             @media screen and (max-width: $ipad){
@@ -224,7 +220,6 @@ $ipadmedium: 700px;
             text-align: center;
             line-height: 64px;
             margin: auto;
-            width: 90%;
             padding: 100px;
             @media screen and (max-width: $ipad){
                 font-size: 36px;
@@ -241,38 +236,26 @@ $ipadmedium: 700px;
             }
         }
         .about {
-            font-size: 48px;
+            font-size: 2vw;
             grid-column: 1 / 24;
             text-align: center;
+
             grid-row: 14;
-            width: 100%;
             opacity: 0;
             font-family: 'Playfair Display SC', serif;
-            @media screen and (max-width: $ipad) {
-                font-size: 36px;
-                position: relative;
-                left: 20px;
-            }
-            @media screen and (max-width: $iphone){
-                font-size: 18px;
-            }
+
 
             p {
                 text-align: center;
-                line-height: 64px;
-                margin: auto;
-                width: 60%;
-                padding: 100px;
                 @media screen and (max-width: $iphone){
-                    position: relative;
-                    right: 20px;
                 }
             }
         }
         .explore {
-            font-size: 3rem;
+            font-size: 2vw;
             grid-column: 1 / 24;
             grid-row: 20;
+
             text-align: center;
             @media screen and (max-width: $ipad) {
                 font-size: 36px;
@@ -283,155 +266,155 @@ $ipadmedium: 700px;
         }
     }
 }
-.sectionThreeGrid {
-    display: grid;
-    grid-template-columns: repeat(23, 1fr);
-    grid-auto-rows: 100px;  
-        .productContainer {
-            grid-column: 1/24;
-            grid-row: span 8;
-            display: grid;
-            grid-template-columns: repeat(23, 1fr);
-            font-family: 'Playfair Display SC', serif;
+// .sectionThreeGrid {
+//     display: grid;
+//     grid-template-columns: repeat(23, 1fr);
+//     grid-auto-rows: 100px;  
+//         .productContainer {
+//             grid-column: 1/24;
+//             grid-row: span 8;
+//             display: grid;
+//             grid-template-columns: repeat(23, 1fr);
+//             font-family: 'Playfair Display SC', serif;
 
-            .productOne {
-                grid-column: 1 / 8;
-                grid-row: span 14;
-                background-repeat: no-repeat;
-                background-size: 500px;
-                background-position: center;
-                img {
-                    width: 500px;
-                    position: relative;
-                    top: 150px;
-                    left: 40px;
-                }
-                h1 {
-                    opacity: 0;
-                    text-align: center;
-                    position: relative;
-                    top: 10rem;
-                    font-weight: 300;
-                    letter-spacing: 3px;
-                }
-                .prices {
-                    font-size: 1.75rem;
-                    position: relative;
-                    top: 2rem;
-                    text-align: center;
-                    opacity: 0;
-                }
-                button {
-                    text-align: center;
-                    position: relative;
-                    top: 2.75rem;
-                    border-style: solid;
-                    border-width: 1px;
-                    margin: auto;
-                    width: 400px;
-                    padding: 5px;
-                    opacity: 1;
-                    transition: 0.5s;
-                    left: 5.5rem;
-                }
-                p:hover {
-                    opacity: 1;
+//             .productOne {
+//                 grid-column: 1 / 8;
+//                 grid-row: span 14;
+//                 background-repeat: no-repeat;
+//                 background-size: 500px;
+//                 background-position: center;
+//                 img {
+//                     width: 500px;
+//                     position: relative;
+//                     top: 150px;
+//                     left: 40px;
+//                 }
+//                 h1 {
+//                     opacity: 0;
+//                     text-align: center;
+//                     position: relative;
+//                     top: 10rem;
+//                     font-weight: 300;
+//                     letter-spacing: 3px;
+//                 }
+//                 .prices {
+//                     font-size: 1.75rem;
+//                     position: relative;
+//                     top: 2rem;
+//                     text-align: center;
+//                     opacity: 0;
+//                 }
+//                 button {
+//                     text-align: center;
+//                     position: relative;
+//                     top: 2.75rem;
+//                     border-style: solid;
+//                     border-width: 1px;
+//                     margin: auto;
+//                     width: 400px;
+//                     padding: 5px;
+//                     opacity: 1;
+//                     transition: 0.5s;
+//                     left: 5.5rem;
+//                 }
+//                 p:hover {
+//                     opacity: 1;
                     
-                }
-            }
-            .productTwo {
-                grid-column: 8 / 16;
-                grid-row: span 14;
-                background-repeat: no-repeat;
-                background-size: 400px;
-                background-position: center;
-                img {
-                    width: 400px;
-                    position: relative;
-                    top: 175px;
-                    left: 131px;
-                }
-                h1 {
-                    opacity: 0;
-                    text-align: center;
-                    position: relative;
-                    top: 10rem;
-                    font-weight: 300;
-                    letter-spacing: 3px;
-                }
-                .prices {
-                    font-size: 1.75rem;
-                    position: relative;
-                    top: 8rem;
-                    text-align: center;
-                    opacity: 0;
-                }
-                button {
-                    text-align: center;
-                    position: relative;
-                    top: 9rem;
-                    border-style: solid;
-                    border-width: 1px;
-                    margin: auto;
-                    width: 400px;
-                    padding: 5px;
-                    opacity: 1;
-                    left: 8rem;
-                    transition: 0.5s;
-                }
-                p:hover {
-                    opacity: 1;
+//                 }
+//             }
+//             .productTwo {
+//                 grid-column: 8 / 16;
+//                 grid-row: span 14;
+//                 background-repeat: no-repeat;
+//                 background-size: 400px;
+//                 background-position: center;
+//                 img {
+//                     width: 400px;
+//                     position: relative;
+//                     top: 175px;
+//                     left: 131px;
+//                 }
+//                 h1 {
+//                     opacity: 0;
+//                     text-align: center;
+//                     position: relative;
+//                     top: 10rem;
+//                     font-weight: 300;
+//                     letter-spacing: 3px;
+//                 }
+//                 .prices {
+//                     font-size: 1.75rem;
+//                     position: relative;
+//                     top: 8rem;
+//                     text-align: center;
+//                     opacity: 0;
+//                 }
+//                 button {
+//                     text-align: center;
+//                     position: relative;
+//                     top: 9rem;
+//                     border-style: solid;
+//                     border-width: 1px;
+//                     margin: auto;
+//                     width: 400px;
+//                     padding: 5px;
+//                     opacity: 1;
+//                     left: 8rem;
+//                     transition: 0.5s;
+//                 }
+//                 p:hover {
+//                     opacity: 1;
                     
-                }
-            }
-            .productThree {
-                grid-column: 16 / 24;
-                grid-row: span 14;
-                background-repeat: no-repeat;
-                background-position: center;
-                transition: 0.5s;
-                img {
-                    width: 400px;
-                    position: relative;
-                    top: 175px;
-                    left: 130px;
-                }
-                h1 {
-                    opacity: 0;
-                    text-align: center;
-                    position: relative;
-                    top: 10rem;
-                    font-weight: 300;
-                    letter-spacing: 3px;
-                }
-                .prices {
-                    font-size: 1.75rem;
-                    position: relative;
-                    top: 8rem;
-                    text-align: center;
-                    opacity: 0;
-                }
-                button {
-                    text-align: center;
-                    position: relative;
-                    top: 9rem;
-                    border-style: solid;
-                    border-width: 1px;
-                    margin: auto;
-                    width: 400px;
-                    padding: 5px;
-                    opacity: 0;
-                    transition: 0.5s;
-                    opacity: 1;
-                    left: 8rem;
-                }
-                p:hover {
-                    opacity: 1;
+//                 }
+//             }
+//             .productThree {
+//                 grid-column: 16 / 24;
+//                 grid-row: span 14;
+//                 background-repeat: no-repeat;
+//                 background-position: center;
+//                 transition: 0.5s;
+//                 img {
+//                     width: 400px;
+//                     position: relative;
+//                     top: 175px;
+//                     left: 130px;
+//                 }
+//                 h1 {
+//                     opacity: 0;
+//                     text-align: center;
+//                     position: relative;
+//                     top: 10rem;
+//                     font-weight: 300;
+//                     letter-spacing: 3px;
+//                 }
+//                 .prices {
+//                     font-size: 1.75rem;
+//                     position: relative;
+//                     top: 8rem;
+//                     text-align: center;
+//                     opacity: 0;
+//                 }
+//                 button {
+//                     text-align: center;
+//                     position: relative;
+//                     top: 9rem;
+//                     border-style: solid;
+//                     border-width: 1px;
+//                     margin: auto;
+//                     width: 400px;
+//                     padding: 5px;
+//                     opacity: 0;
+//                     transition: 0.5s;
+//                     opacity: 1;
+//                     left: 8rem;
+//                 }
+//                 p:hover {
+//                     opacity: 1;
                     
-                }
-             }
-          }
-    }
+//                 }
+//              }
+//           }
+//     }
     .sectionFourGrid {
         display: grid;
         grid-template-columns: repeat(23, 1fr);
@@ -593,13 +576,14 @@ $ipadmedium: 700px;
             .recipeName {
                 grid-column: 1 / 24;
                 grid-row: span 22;
-                background: lightgrey;
                 display: grid;
                 grid-template-columns: repeat(23, 1fr);
                 grid-template-rows: repeat(23, 1fr);
+                background-color: white;
                 .recipeOne {
                     grid-column: 4 / 8;
                     grid-row: 2 / 23;
+                    background-image: url(/images/RecipeOne.jpg);
                     @media screen and (max-width: $ipad) {
                         grid-column: 5 / 9;
                     }
@@ -610,6 +594,7 @@ $ipadmedium: 700px;
                 .recipeTwo {
                     grid-column: 10 / 14;
                     grid-row: 2 / 23;
+                    background-image: url(/images/RecipeTwo.jpg);
                     @media screen and (max-width: $ipad) {
                         grid-column: 10 / 14;
                     }
@@ -620,6 +605,8 @@ $ipadmedium: 700px;
                 .recipeThree {
                     grid-column: 16 / 20;
                     grid-row: 2 / 23;
+                    background-image: url(/images/RecipeThree.jpg);
+                    background-size: cover;
                     @media screen and (max-width: $ipad) {
                         grid-column: 15 / 19;
                     }
@@ -1017,7 +1004,7 @@ $ipadmedium: 700px;
             grid-template-columns: repeat(23, 1fr);
             grid-auto-rows: 100px;
             font-family: 'Playfair Display SC', serif;
-            background-color: darkgrey;
+            background-color: lightgrey;
             .heroText {
                 grid-column: 1 / 24;
                 grid-row: span 5;
@@ -1042,7 +1029,6 @@ $ipadmedium: 700px;
                 justify-content: center;
                 align-items: center;
                 font-size: 1.8vw;
-                background-color: lightgreen;
                 @media screen and (max-width: $ipad) {
                     font-size: 3vw;
                 }
@@ -1055,9 +1041,8 @@ $ipadmedium: 700px;
                 grid-row: span 10;
                 display: grid;
                 grid-template-columns: repeat(23, 1fr);
-                grid-auto-rows: 100px;
+                grid-auto-rows: 110px;
                 font-family: 'Playfair Display SC', serif;
-                background-color: darkgrey;
                 .whatYouNeed {
                     grid-column: 2 / 10;
                     grid-row: span 8;
@@ -1066,9 +1051,10 @@ $ipadmedium: 700px;
                     left: 4rem;
                     top: 5rem;
                     z-index: 10;
+                    font-size: 4px;
                     @media screen and (max-width: $ipad) {
-                        grid-row: span 6;
-                    }
+                        grid-column: 5 / 15;
+                }
                     @media screen and (max-width: $iphone) {
                         grid-row: span 4;
                     }
@@ -1108,7 +1094,9 @@ $ipadmedium: 700px;
                 .foodImage {
                     grid-column: 10 / 24;
                     grid-row: span 10;
-                    background-color: lightgrey;
+                    @media screen and (max-width: $ipad) {
+                        display: none;
+                    }
                 }
             }
             .howToMakeContainer {
@@ -1132,6 +1120,7 @@ $ipadmedium: 700px;
                     grid-column: 5 / 20;
                     justify-content: center;
                     font-size: 1.3vw;
+                    font-family: 'Spectral', serif;
                     @media screen and (max-width: $ipad) {
                         font-size: 1.7vw;
                     }
@@ -1142,12 +1131,15 @@ $ipadmedium: 700px;
             }
             .nextRecipe {
                 grid-column: 1 / 24;
-                grid-row: span 12;
+                grid-row: span 10;
                 display: grid;
                 grid-template-columns: repeat(23, 1fr);
                 grid-auto-rows: 100px;
+                background-color: white;
                 .readNext {
                     grid-column: 1 / 24;
+                    position: relative;
+                    top: 8rem;
                     display: flex;
                     justify-content: center;
                     font-size: 3.3vw;
@@ -1161,6 +1153,8 @@ $ipadmedium: 700px;
                 }
                 .nameOfRecipe {
                     grid-column: 1 / 24;
+                    position: relative;
+                    top: 8rem;
                     display: flex;
                     justify-content: center;
                     font-size: 5vw;
@@ -1176,9 +1170,9 @@ $ipadmedium: 700px;
                 .nextImage{
                     grid-column: 10 / 15;
                     grid-row: span 7;
-                    background-color: white;
-                    position: relative;
-                    bottom: 0rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     @media screen and (max-width: $iphone) {
                         grid-column: 5 / 20;
                     }
@@ -1280,7 +1274,13 @@ $ipadmedium: 700px;
                     padding-top: 60px;
                 }
                 .images {
-                    padding: 40px;
+                    padding: 50px;
+                    @media screen and (max-width: $ipad) {
+                        width: 80%;
+                    }
+                    @media screen and (max-width: $iphone) {
+
+                    }
                 }
                 .ravyaName {
                     font-size: 1.5rem;
@@ -1500,15 +1500,10 @@ $ipadmedium: 700px;
                         
                     }
                 }
-                .empty {
-                    grid-column: 12 / 20;
-                    @media screen and (max-width: $ipad) {
-
-                    }
-                    @media screen and (max-width: $iphone) {
-                        
-                    }
-                }
+            }
+            .empty{
+                grid-column: 4 / 20;
+                text-align: center;
             }
             .cartIteams {
                 grid-column: 1 / 24;
@@ -1580,12 +1575,35 @@ $ipadmedium: 700px;
                 }
             }
         }
+        .formContainer {
+            grid-column: 4 / 24;
+            .inputOne{
+                width: 40%;
+                height: 35px;
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                border-bottom: 0.5px, solid;
+                outline: none;
+                margin-right: 60px;
+            }
+            .addressSubmit{
+                position: relative;
+                top: 30px;
+                width: 80%;
+                text-align: center;
+                padding: 10px;
+                border: 1px solid lightgray;
+                cursor: pointer;
+            }
+        }
         .cartAction {
             grid-column: 1 / 24;
             display: grid;
             grid-template-columns: repeat(23, 1fr);
             position: relative;
             top: 30px;
+            grid-row: span 4;
             .subTotalMain {
                 grid-column: 4 / 24;
                 font-size: 2vw;
@@ -1602,6 +1620,9 @@ $ipadmedium: 700px;
                 border: 1px solid black;
                 text-align: center;
                 padding: 10px;
+                position: relative;
+                bottom: 10px;
+                cursor: pointer;
                 @media screen and (max-width: $ipad) {
 
                 }
@@ -1609,6 +1630,10 @@ $ipadmedium: 700px;
                     
                 }
             }
+        }
+        .cartSpace{
+            padding: 40px;
+            height: 40px;
         }
     }
 }    

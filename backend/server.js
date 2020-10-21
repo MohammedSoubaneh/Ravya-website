@@ -4,7 +4,7 @@ import data from './data';
 var bodyParser = require('body-parser')
 
 const Easypost = require('@easypost/api');
-const api = new Easypost('EZTK3a3fa4217ff74bcba96775911c5235dazPKAaamCbEIC0dAbbaRXxg');
+const api = new Easypost('EZAKeb57177d069a415b85711f53625a2edfmuaCFYWr1etZTbptrnZcGg');
 
 
 const path = require('path');
@@ -64,41 +64,43 @@ app.post('/api/create-shipment', async (req, res) => {
   console.log(req.body.to_address)
   const shipment = new api.Shipment({
     to_address: {
-      'name': req.body.to_address.name,
-      'email':req.body.to_address.email,
+      'name': req.body.toaddress.name,
+      'email':req.body.toaddress.email,
       'phone':req.body.to_address.phone,
       'object': req.body.to_address.address,
-      'street1': req.body.to_address.street,
-      'city': req.body.to_address.city,
-      'state': 'NY',
-      'zip': req.body.to_address.zip,
+      'street1': req.body.toaddress.street,
+      'city': req.body.toaddress.city,
+      'state': req.body.toaddress.state,
+      'zip': req.body.toaddress.zip,
+      'country':'CA',
       'residential':req.body.to_address.residential === 'residential' ? true : false
-    },
-    from_address: {
-      'company': 'EasyPost',
-      'street1': '417 Montgomery Street',
+      },
+      from_address: {
+      'company': 'Ravya',
+      'street1': '1204 St-Jerome Street',
       'street2': '5th Floor',
-      'city': 'San Francisco',
-      'state': 'CA',
-      'zip': '94104',
+      'city': 'St Jerome',
+      'state': 'Quebec',
+      'zip': 'S4P 3Y2',
+      'country':'CA',
       'phone': '415-528-7555'
-    },
-    parcel: {
+      },
+      parcel: {
       'length': 9,
       'width': 6,
       'height': 2,
       'weight': 10
-    }
+      }
   });
 
   shipment.save().then(() => {
-    // shipment.rates.forEach(rate => {
-    //   console.log(rate.carrier);
-    //   console.log(rate.service);
-    //   console.log(rate.rate);
-    //   console.log(rate.id);
-    // });
-    shipment.buy(shipment.lowestRate(['USPS'], ['First']))
+     shipment.rates.forEach(rate => {
+       console.log(rate.carrier);
+       console.log(rate.service);
+       console.log(rate.rate);
+       console.log(rate.id);
+    });
+    shipment.buy(shipment.lowestRate(['CanadaPost'], ['First'], ))
       .then(() => {
         console.log(shipment.fees[1].amount)
         res.send({ shipmentFee:shipment.fees[1].amount })
