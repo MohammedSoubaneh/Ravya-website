@@ -4,7 +4,7 @@ import data from './data';
 var bodyParser = require('body-parser')
 
 const Easypost = require('@easypost/api');
-const api = new Easypost('EZTK3a3fa4217ff74bcba96775911c5235dazPKAaamCbEIC0dAbbaRXxg');
+const api = new Easypost('EZTKeb57177d069a415b85711f53625a2edf009A8rRwysF0ma8tsdguiA');
 
 
 const path = require('path');
@@ -70,17 +70,19 @@ app.post('/api/create-shipment', async (req, res) => {
       'object': req.body.to_address.address,
       'street1': req.body.to_address.street,
       'city': req.body.to_address.city,
-      'state': 'NY',
+      'state': req.body.to_address.state,
       'zip': req.body.to_address.zip,
+      'country':'CA',
       'residential':req.body.to_address.residential === 'residential' ? true : false
     },
     from_address: {
-      'company': 'EasyPost',
-      'street1': '417 Montgomery Street',
+      'company': 'Ravya',
+      'street1': '1204  St-Jerome Street',
       'street2': '5th Floor',
-      'city': 'San Francisco',
-      'state': 'CA',
-      'zip': '94104',
+      'city': 'St Jerome',
+      'state': 'Quebec',
+      'zip': 'S4P 3Y2',
+      'country':'CA',
       'phone': '415-528-7555'
     },
     parcel: {
@@ -92,18 +94,23 @@ app.post('/api/create-shipment', async (req, res) => {
   });
 
   shipment.save().then(() => {
-    // shipment.rates.forEach(rate => {
-    //   console.log(rate.carrier);
-    //   console.log(rate.service);
-    //   console.log(rate.rate);
-    //   console.log(rate.id);
-    // });
-    shipment.buy(shipment.lowestRate(['USPS'], ['First']))
-      .then(() => {
-        console.log(shipment.fees[1].amount)
-        res.send({ shipmentFee:shipment.fees[1].amount })
-      }
-      );
+    console.log("SHIPMENT", shipment)
+    res.send({ shipmentFee:shipment})
+    shipment.rates.forEach(rate => {
+      console.log(rate.carrier);
+      console.log(rate.service);
+      console.log(rate.rate);
+      console.log(rate.id);
+      console.log(shipment)
+        res.send({ shipmentFee:shipment})
+    });
+
+    // shipment.buy(shipment.lowestRate(['USPS'], ['First']))
+    //   .then(() => {
+    //     console.log(shipment.fees[1].amount)
+    //     res.send({ shipmentFee:shipment.fees[1].amount })
+    //   }
+    //   );
   });
 })
 // shipment.postage_label.label_url, shipment.tracking_code
