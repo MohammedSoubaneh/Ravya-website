@@ -1,7 +1,7 @@
 import React from 'react';
 import {motion} from 'framer-motion';
 
-function Recipe () {
+function RecipeRice () {
     const transitionDelay = { delay: 1, duration: 2, ease: [0.6, 0.01, -0.1, 0.96] };
     return(
         <motion.div className="recipeContainer" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={transitionDelay}>
@@ -11,32 +11,38 @@ function Recipe () {
                 <div className="whatYouNeed">
                 <p>What You Need</p>
                 <ul>
-                    <li>Lorem ipsum dolor sit amet</li>
+                    <li>Basmatic Rice</li>
                     <br/>
-                    <li>Lorem ipsum</li>
+                    <li>Olive Oil</li>
                     <br/>
-                    <li>Lorem ipsum</li>
+                    <li>Cloves</li>
                     <br/>
-                    <li>Lorem ipsum</li>
+                    <li>Bay leaf</li>
                     <br/>
-                    <li>Lorem ipsum</li>
+                    <li>Cinnamon </li>
+                    <br/>
+                    <li>Yellow Onions</li>
+                    <br/>
+                    <li>One Sache of Ravya Turmeric Infusion</li>
                 </ul>
                 </div>
-                <div className="foodImage"></div>
+                <div className="foodImage"><img src="/images/RecipeRiceHero.jpg" /></div>
             </div>
             <div className="howToMakeContainer">
                 <div className="howToMake">How To Make</div>
-                <div className="instuctionOne">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>
-                <div className="instuctionOne">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>
-                <div className="instuctionOne">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </div>
+                <div className="instuctionOne">Soak 1 Cup of Basmati rice for atleast 10 minutes, wash and rinse it a few times. </div>
+                <div className="instuctionOne">Add 1 tbsp of olive oil to your pot and set the heat to medium. As it's heating up cut and add in your onions in whichever way you like follow up with 2 clove, let it Saute for 10minutes at low/medium heat </div>
+                <div className="instuctionOne">Add in rice and cook it for 2 minutes. Add in 2 cups boiling hot water </div>
+                <div className="instuctionOne">Cut open your Ravya Sache and add it to you hot water. Let the rice absorb the water. Once water is almost finished lower the heat until the rest of water is gone. </div>
+                <div className="instuctionOne">Lastly Enjoy! </div>
             </div>
             <div className="nextRecipe">
                 <div className="readNext">Next Recipe</div>
-                <div className="nameOfRecipe">Lorem ipsum dolor sit amet, consectetur</div>
-                <div className="nextImage"></div>
+                <div className="nameOfRecipe">Ravya + Ice Cream</div>
+                <div className="nextImage"><img src="/images/RecipeTwo.jpg" /></div>
             </div>
         </motion.div>
     );
 }
 
-export default Recipe;
+export default RecipeRice;

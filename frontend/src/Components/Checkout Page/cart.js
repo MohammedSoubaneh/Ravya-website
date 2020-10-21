@@ -4,6 +4,7 @@ import axios from 'axios';
 import { addToCart, removeFromCart } from '../../actions/cartAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadStripe } from '@stripe/stripe-js';
+import {motion} from 'framer-motion';
 
 const stripePromise = loadStripe('pk_test_51HLEnyGLtWDqx1qOuhwNOtq65b6yePscQjYcES7rTYRJK0R44QMWo4i1R4VAf3GLDv1Gg3jQ4pezZDWoFDiRXL0L005dHHnLqM');
 
@@ -102,90 +103,88 @@ function Cart(props) {
               </div>
             )
         }
-        <div className="">
-          <form onSubmit={hanldeSubmit}>
-            <h1>Enter your address</h1>
+        <div className="formContainer">
+          
+          <div className="formOuterContainer" onSubmit={hanldeSubmit}>
+          <div className="formInnerContainer">
+            <h1>Shipping Address</h1>
             <input
-              placeholder="Address"
-              name="address"
-              type='text'
-              value={address}
-              onChange={(event) => setAddress(event.target.value)}
-            />
-            <input
-              placeholder="Name"
+            className="inputOne"
+              placeholder="Full Name"
               name="name"
               type='text'
               value={name}
               onChange={(event) => setName(event.target.value)}
             />
+            <br/>
             <input
-              placeholder="email"
+            className="inputOne"
+              placeholder="Address"
+              name="address"
+              type='text'
+              value={address}
+              onChange={(event) => setAddress(event.target.value)}
+            /> 
+            <input
+            className="inputOne"
+              placeholder="Email"
               email="email"
               type='email'
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
             <input
-              placeholder="street"
+            className="inputOne"
+              placeholder="Street (optional)"
               name="street"
               type='text'
               value={street}
               onChange={(event) => setStreet(event.target.value)}
             />
             <input
-              placeholder="city"
+            className="inputOne"
+              placeholder="City"
               name="city"
               type='text'
               value={city}
               onChange={(event) => setCity(event.target.value)}
             />
             <input
-              placeholder="state"
+            className="inputOne"
+              placeholder="State"
               name="state"
               type='text'
               value={state}
               onChange={(event) => setState(event.target.value)}
             />
             <input
-              placeholder="phone"
+            className="inputOne"
+              placeholder="Phone"
               name="phone"
               type='text'
               value={phone}
               onChange={(event) => setPhone(event.target.value)}
             />
             <input
-              placeholder="zip"
+            className="inputOne"
+              placeholder="Zip"
               name="zip"
               type='text'
               value={zip}
               onChange={(event) => setZip(event.target.value)}
             />
-            <p>Company</p>
-            <input
-              name="company"
-              type='radio'
-              checked={addressType === "company"}
-              value={"company"}
-              onChange={(event) => setAdressType(event.target.value)}
-            />
-            <p>Residential</p>
-            <input
-              name="residential"
-              checked={addressType === "residential"}
-              type='radio'
-              value={"residential"}
-              onChange={(event) => setAdressType(event.target.value)}
-            />
-            <button type="submit">submit</button>
-          </form>
+            <div className="addressSubmit" type="submit" onClick={hanldeSubmit}>submit</div>
+            </div>
+          </div>
+         
         </div>
         <div className="cartAction">
           <div className="subTotalMain">
             Subtotal{/*({cartItems.reduce((a, c) => a + c.qty, 0)} items)*/}:&nbsp;${cartItems.reduce((a, c) => a + c.price * c.qty, shipmentFee)}
           </div>
-          <div className="buttonPrimaryMain" disabled={cartItems.length === 0} role="link" onClick={handleClick}>Proceed to Checkout</div>
+          <motion.div whileHover={{scale: 1.1}} whileTap={{scale:1}} className="buttonPrimaryMain" disabled={cartItems.length === 0} role="link" onClick={handleClick}>Proceed to Checkout</motion.div>
         </div>
+        <div className="cartSpace"></div>
       </div>
     </div>
 

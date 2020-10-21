@@ -4,8 +4,7 @@ import data from './data';
 var bodyParser = require('body-parser')
 
 const Easypost = require('@easypost/api');
-const api = new Easypost('EZTKeb57177d069a415b85711f53625a2edf009A8rRwysF0ma8tsdguiA');
-
+const api = new Easypost('EZAKeb57177d069a415b85711f53625a2edfmuaCFYWr1etZTbptrnZcGg');
 
 const path = require('path');
 const app = express();
