@@ -13,7 +13,8 @@ export default  {
         spaceApart: "60px", 
         heroImage: '/images/productImage.jpg',
         productWidth: '700px',
-        weight: '0.045'
+        // weight: '0.045'
+        weight:4.23288
     },
     {
         _id: 'Ravya-15pc',
@@ -28,7 +29,8 @@ export default  {
         headerTop: "35px",
         heroImage: '/images/productImage2.jpg',
         productWidth: '700px',
-        weight: '0.023' 
+        // weight: '0.023'
+        weight:2.64555 
     },
     {
         _id: 'Ravya-2pc',
@@ -43,7 +45,8 @@ export default  {
         rightSpace: "60px",
         heroImage: '/images/productImage3.jpg',
         productWidth: '700px',
-        weight: '0.002'
+        // weight: '0.002'
+        weight:0.35274
         
     }]
 
