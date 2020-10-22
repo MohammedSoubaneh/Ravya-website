@@ -4,7 +4,7 @@ import axios from 'axios';
 import { addToCart, removeFromCart } from '../../actions/cartAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadStripe } from '@stripe/stripe-js';
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const stripePromise = loadStripe('pk_test_51HLEnyGLtWDqx1qOuhwNOtq65b6yePscQjYcES7rTYRJK0R44QMWo4i1R4VAf3GLDv1Gg3jQ4pezZDWoFDiRXL0L005dHHnLqM');
 
@@ -49,6 +49,17 @@ function Cart(props) {
         quantity: item.qty
       }
     ))
+    data.push({
+      price_data: {
+        currency: 'usd',
+        product_data: {
+          name: 'shiping cost',
+          images: ['https://logos-download.com/wp-content/uploads/2016/10/Canada_Post_logo_logotype.png'],
+        },
+        unit_amount: shipmentFee * 100,
+      },
+      quantity: 1
+    })
     const response = await axios.post("/create-session", { cartItems: data })
     const session = await response.data;
     console.log("SESSION", session)
@@ -63,12 +74,12 @@ function Cart(props) {
   };
   const hanldeSubmit = async (event) => {
     event.preventDefault()
-    let residential 
+    let residential
     let company
     addressType === "company" ? company = true : residential = true
     console.log({ address, name, email, zip, city, state, addressType, phone, company, residential })
     const data = { address, name, email, zip, city, state, addressType, phone }
-    const response = await axios.post("/api/create-shipment", { to_address: data })
+    const response = await axios.post("/api/create-shipment", { to_address: data, cartItems })
     const fee = await response.data;
     console.log("Shipment Fee", fee)
     setShipment(parseFloat(fee.shipmentFee))
@@ -91,7 +102,7 @@ function Cart(props) {
                 </Link></div>
                 <div className="qtyOuter">
                   <div className="qtyInner">
-                    Qty:&nbsp; <select value={item.qty} onChange={(e) => dispatch(addToCart(item.product, e.target.value))}>
+                    Qty:&nbsp; <select value={item.qty} onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}>
                       {[...Array(item.countInStock).keys()].map(x =>
                         <option className="qty" key={x + 1} value={x + 1}>{x + 1}</option>
                       )}
@@ -104,85 +115,88 @@ function Cart(props) {
             )
         }
         <div className="formContainer">
-          
+
           <div className="formOuterContainer" onSubmit={hanldeSubmit}>
-          <div className="formInnerContainer">
-            <h1>Shipping Address</h1>
-            <input
-            className="inputOne"
-              placeholder="Full Name"
-              name="name"
-              type='text'
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-            />
-            <br/>
-            <input
-            className="inputOne"
-              placeholder="Address"
-              name="address"
-              type='text'
-              value={address}
-              onChange={(event) => setAddress(event.target.value)}
-            /> 
-            <input
-            className="inputOne"
-              placeholder="Email"
-              email="email"
-              type='email'
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-            <input
-            className="inputOne"
-              placeholder="Street (optional)"
-              name="street"
-              type='text'
-              value={street}
-              onChange={(event) => setStreet(event.target.value)}
-            />
-            <input
-            className="inputOne"
-              placeholder="City"
-              name="city"
-              type='text'
-              value={city}
-              onChange={(event) => setCity(event.target.value)}
-            />
-            <input
-            className="inputOne"
-              placeholder="State"
-              name="state"
-              type='text'
-              value={state}
-              onChange={(event) => setState(event.target.value)}
-            />
-            <input
-            className="inputOne"
-              placeholder="Phone"
-              name="phone"
-              type='text'
-              value={phone}
-              onChange={(event) => setPhone(event.target.value)}
-            />
-            <input
-            className="inputOne"
-              placeholder="Zip"
-              name="zip"
-              type='text'
-              value={zip}
-              onChange={(event) => setZip(event.target.value)}
-            />
-            <div className="addressSubmit" type="submit" onClick={hanldeSubmit}>submit</div>
+            <div className="formInnerContainer">
+              <h1>Shipping Address</h1>
+              <input
+                className="inputOne"
+                placeholder="Full Name"
+                name="name"
+                type='text'
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+              />
+              <br />
+              <input
+                className="inputOne"
+                placeholder="Street 1"
+                name="address"
+                type='text'
+                value={address}
+                onChange={(event) => setAddress(event.target.value)}
+              />
+              <input
+                className="inputOne"
+                placeholder="Email"
+                email="email"
+                type='email'
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+              />
+              <input
+                className="inputOne"
+                placeholder="Street2 (optional)"
+                name="street"
+                type='text'
+                value={street}
+                onChange={(event) => setStreet(event.target.value)}
+              />
+              <input
+                className="inputOne"
+                placeholder="City"
+                name="city"
+                type='text'
+                value={city}
+                onChange={(event) => setCity(event.target.value)}
+              />
+              <input
+                className="inputOne"
+                placeholder="State"
+                name="state"
+                type='text'
+                value={state}
+                onChange={(event) => setState(event.target.value)}
+              />
+              <input
+                className="inputOne"
+                placeholder="Phone"
+                name="phone"
+                type='text'
+                value={phone}
+                onChange={(event) => setPhone(event.target.value)}
+              />
+              <input
+                className="inputOne"
+                placeholder="Zip"
+                name="zip"
+                type='text'
+                value={zip}
+                onChange={(event) => setZip(event.target.value)}
+              />
+              <div className="addressSubmit" type="submit" onClick={hanldeSubmit}>submit</div>
             </div>
           </div>
-         
+
         </div>
         <div className="cartAction">
           <div className="subTotalMain">
+            Shipping Cost{/*({cartItems.reduce((a, c) => a + c.qty, 0)} items)*/}:&nbsp;${shipmentFee}
+          </div>
+          <div className="subTotalMain">
             Subtotal{/*({cartItems.reduce((a, c) => a + c.qty, 0)} items)*/}:&nbsp;${cartItems.reduce((a, c) => a + c.price * c.qty, shipmentFee)}
           </div>
-          <motion.div whileHover={{scale: 1.1}} whileTap={{scale:1}} className="buttonPrimaryMain" disabled={cartItems.length === 0} role="link" onClick={handleClick}>Proceed to Checkout</motion.div>
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 1 }} className="buttonPrimaryMain" disabled={cartItems.length === 0} role="link" onClick={handleClick}>Proceed to Checkout</motion.div>
         </div>
         <div className="cartSpace"></div>
       </div>
