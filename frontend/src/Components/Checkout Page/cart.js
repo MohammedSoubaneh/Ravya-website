@@ -8,7 +8,10 @@ import { motion } from 'framer-motion';
 
 const stripePromise = loadStripe('pk_test_51HLEnyGLtWDqx1qOuhwNOtq65b6yePscQjYcES7rTYRJK0R44QMWo4i1R4VAf3GLDv1Gg3jQ4pezZDWoFDiRXL0L005dHHnLqM');
 
-
+const countries = [
+  { name: "Canada", value: 'CA' },
+  { name: "USA", value: 'US' }
+]
 function Cart(props) {
   const [address, setAddress] = useState("")
   const [name, setName] = useState("")
@@ -20,6 +23,7 @@ function Cart(props) {
   const [addressType, setAdressType] = useState("residential")
   const [street, setStreet] = useState("")
   const [shipmentFee, setShipment] = useState(0)
+  const [country, setCountry] = useState(0)
   const cart = useSelector(state => state.cart);
   const { cartItems } = cart;
   const productId = props.match.params.id;
@@ -77,8 +81,8 @@ function Cart(props) {
     let residential
     let company
     addressType === "company" ? company = true : residential = true
-    console.log({ address, name, email, zip, city, state, addressType, phone, company, residential })
-    const data = { address, name, email, zip, city, state, addressType, phone }
+    console.log({ address, name, email, zip, city, state, addressType, phone, company, residential, country })
+    const data = { address, name, email, zip, city, state, addressType, phone, country }
     const response = await axios.post("/api/create-shipment", { to_address: data, cartItems })
     const fee = await response.data;
     console.log("Shipment Fee", fee)
@@ -184,6 +188,16 @@ function Cart(props) {
                 value={zip}
                 onChange={(event) => setZip(event.target.value)}
               />
+              <select
+                className="inputOne"
+                // placeholder="Zip"
+                // name="zip"
+                // type='text'
+                value={country}
+                onChange={(event) => setCountry(event.target.value)}
+              >
+                {countries.map(country => (<option value={country.value}>{country.name}</option>))}
+              </select>
               <div className="addressSubmit" type="submit" onClick={hanldeSubmit}>submit</div>
             </div>
           </div>
