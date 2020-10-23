@@ -94,7 +94,7 @@ app.post('/api/create-shipment', async (req, res) => {
       'city': to_address.city,
       'state': to_address.state,
       'zip': to_address.zip,
-      'country': 'CA',
+      'country': to_address.country,
       'residential': to_address.residential === 'residential' ? true : false
     },
     from_address: {
