@@ -48,6 +48,47 @@ export default  {
         // weight: '0.002'
         weight:0.35274
         
-    }]
+    }],
+    customItems:[
+        {
+            "id": "cstitem_ab3b642ccbeb41e6a3e70237f6ab23bf",
+            "object": "CustomsItem",
+            "mode": "test",
+            "created_at": "2020-10-24T14:26:02Z",
+            "updated_at": "2020-10-24T14:26:02Z",
+            "description": "Ravya Turmeric Infusion 25pc",
+            "quantity": 1,
+            "value": "20.0",
+            "weight": 4.232,
+            "hs_tariff_number": "610910",
+            "origin_country": "CA"
+        },
+        {
+            "id": "cstitem_ad149beeef7f4d6fa17d96dc2a9f4fe5",
+            "object": "CustomsItem",
+            "mode": "test",
+            "created_at": "2020-10-24T14:26:35Z",
+            "updated_at": "2020-10-24T14:26:35Z",
+            "description": "Ravya Turmeric Infusion 15pc",
+            "quantity": 1,
+            "value": "15.0",
+            "weight": 2.645,
+            "hs_tariff_number": "610911",
+            "origin_country": "CA"
+        },
+        {
+            "id": "cstitem_cb5d9d22e7254c5d82b270a5e4ba19b9",
+            "object": "CustomsItem",
+            "mode": "test",
+            "created_at": "2020-10-24T14:27:29Z",
+            "updated_at": "2020-10-24T14:27:29Z",
+            "description": "Ravya Turmeric Infusion 2pc",
+            "quantity": 1,
+            "value": "4.0",
+            "weight": 0.352,
+            "hs_tariff_number": "610912",
+            "origin_country": "CA"
+        }
+    ]
 
 }
