@@ -23,7 +23,7 @@ function Cart(props) {
   const [addressType, setAdressType] = useState("residential")
   const [street, setStreet] = useState("")
   const [shipmentFee, setShipment] = useState(0)
-  const [country, setCountry] = useState(0)
+  const [country, setCountry] = useState('CA')
   const cart = useSelector(state => state.cart);
   const { cartItems } = cart;
   const productId = props.match.params.id;
@@ -140,6 +140,13 @@ function Cart(props) {
                 value={address}
                 onChange={(event) => setAddress(event.target.value)}
               />
+              <select
+                className="inputOne"
+                value={country}
+                onChange={(event) => setCountry(event.target.value)}
+              >
+                {countries.map(country => (<option value={country.value}>{country.name}</option>))}
+              </select>
               <input
                 className="inputOne"
                 placeholder="Email"
@@ -166,7 +173,7 @@ function Cart(props) {
               />
               <input
                 className="inputOne"
-                placeholder="State"
+                placeholder={country === 'CA' ? 'Province' : 'State'}
                 name="state"
                 type='text'
                 value={state}
@@ -182,22 +189,13 @@ function Cart(props) {
               />
               <input
                 className="inputOne"
-                placeholder="Zip"
+                placeholder={country === 'CA' ? 'Postal Code' : 'Zip'}
                 name="zip"
                 type='text'
                 value={zip}
                 onChange={(event) => setZip(event.target.value)}
               />
-              <select
-                className="inputOne"
-                // placeholder="Zip"
-                // name="zip"
-                // type='text'
-                value={country}
-                onChange={(event) => setCountry(event.target.value)}
-              >
-                {countries.map(country => (<option value={country.value}>{country.name}</option>))}
-              </select>
+              
               <div className="addressSubmit" type="submit" onClick={hanldeSubmit}>submit</div>
             </div>
           </div>
