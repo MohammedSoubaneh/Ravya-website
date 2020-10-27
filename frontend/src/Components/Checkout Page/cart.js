@@ -10,7 +10,9 @@ const stripePromise = loadStripe('pk_test_51HLEnyGLtWDqx1qOuhwNOtq65b6yePscQjYcE
 
 const countries = [
   { name: "Canada", value: 'CA' },
-  { name: "USA", value: 'US' }
+  { name: "USA", value: 'US' },
+  { name: "Germany", value: 'DE' },
+  { name: "Australia", value: 'AU' },
 ]
 function Cart(props) {
   const [address, setAddress] = useState("")

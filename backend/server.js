@@ -225,7 +225,8 @@ const generateInternationalShipment = (to_address, cartItems, res) => {
         console.log(rate.rate);
         console.log(rate.id);
       });
-      const selectedShipment = shipment.rates.find(rate => rate.service === 'SmallPacketUSAAir')
+      const selectedCarier = to_address.country === 'US' ? 'SmallPacketUSAAir'  : 'SmallPacketInternationalSurface'
+      const selectedShipment = shipment.rates.find(rate => rate.service === selectedCarier)
       console.log("selectedShipment", selectedShipment)
       shipment.buy(shipment.lowestRate(), selectedShipment.rate)
         .then(() => {
