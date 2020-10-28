@@ -74,17 +74,17 @@ function Ending() {
           <div className="whyUs"><p>Why Us?</p></div>
           <div className="whyUsReason">
             <div ref={whyUsOneAnimateGo =>{whyUsOneAnimate = whyUsOneAnimateGo}} className="whyUsOne"><img src="/images/right.png" alt="first-arrow" ></img>Ingredients: Turmeric, Black pepper, Nothing else.</div>
-            <div ref={whyUsTwoAnimateGo =>{whyUsTwoAnimate = whyUsTwoAnimateGo}} className="whyUsTwo"><img src="/images/right.png" alt="second-arrow"  ></img>Our Turmeric Fusion has upto 7X the amount of curcumin then &nbsp;&nbsp;&nbsp;&nbsp;<span>traditional turmeric.</span></div>
-            <div ref={whyUsThreeAnimateGo =>{whyUsThreeAnimate = whyUsThreeAnimateGo}} className="whyUsThree"><img src="/images/right.png" alt="third-arrow" ></img>We care about formulating products that are clean, simple, and &nbsp;&nbsp;&nbsp;&nbsp;<span>delicious.</span></div>
+            <div ref={whyUsTwoAnimateGo =>{whyUsTwoAnimate = whyUsTwoAnimateGo}} className="whyUsTwo"><img src="/images/right.png" alt="second-arrow"  ></img>Our Turmeric Fusion has upto 7X the amount of curcumin then traditional turmeric.</div>
+            <div ref={whyUsThreeAnimateGo =>{whyUsThreeAnimate = whyUsThreeAnimateGo}} className="whyUsThree"><img src="/images/right.png" alt="third-arrow" ></img>We care about formulating products that are clean, simple, and delicious.</div>
             <div ref={theRavyaWayAnimateGo =>{theRavyaWay = theRavyaWayAnimateGo}} className="theRavyaWay">Thats The Ravya Way</div>
           </div>
         </div>
         <div className="recipeContainer">
           <div className="recipe">Recipe</div>
           <div className="recipeName">
-          <div className="recipeOne"><Link to="Recipe/Chickpea"></Link></div>
-          <div className="recipeTwo"><Link to="Recipe/Rice"></Link></div>
-          <div className="recipeThree"><Link to="Recipe/IceCream"></Link></div>
+          <motion.div  whileHover={{ scale: 1.1 }} whileTap={{ scale: 1 }}  className="recipeOne"><Link to="/home/Recipe/Chickpea"><img src="/images/recipesize.JPG" /></Link></motion.div>
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 1 }} className="recipeTwo"><Link to="/home/Recipe/IceCream"><img src="/images/recipesize.JPG" /></Link></motion.div>
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 1 }} className="recipeThree"><Link to="/home/Recipe/Rice"><img src="/images/recipesize.JPG" /></Link></motion.div>
           </div>
         </div>
         {/* <div className="footerContainer">

@@ -10,7 +10,9 @@ const stripePromise = loadStripe('pk_test_51HLEnyGLtWDqx1qOuhwNOtq65b6yePscQjYcE
 
 const countries = [
   { name: "Canada", value: 'CA' },
-  { name: "USA", value: 'US' }
+  { name: "USA", value: 'US' },
+  { name: "Germany", value: 'DE'},
+  { name: "France", value: 'FR'}
 ]
 function Cart(props) {
   const [address, setAddress] = useState("")
@@ -57,7 +59,7 @@ function Cart(props) {
       price_data: {
         currency: 'usd',
         product_data: {
-          name: 'shiping cost',
+          name: 'Shipping Cost',
           images: ['https://logos-download.com/wp-content/uploads/2016/10/Canada_Post_logo_logotype.png'],
         },
         unit_amount: shipmentFee * 100,
@@ -106,7 +108,7 @@ function Cart(props) {
                 </Link></div>
                 <div className="qtyOuter">
                   <div className="qtyInner">
-                    Qty:&nbsp; <select value={item.qty} onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}>
+                    <span>Qty:</span>&nbsp; <select className="qtyCart" value={item.qty} onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}>
                       {[...Array(item.countInStock).keys()].map(x =>
                         <option className="qty" key={x + 1} value={x + 1}>{x + 1}</option>
                       )}
@@ -131,7 +133,7 @@ function Cart(props) {
                 value={name}
                 onChange={(event) => setName(event.target.value)}
               />
-              <br />
+              <div className="spaceBetweenForm"></div>
               <input
                 className="inputOne"
                 placeholder="Street 1"
@@ -140,29 +142,15 @@ function Cart(props) {
                 value={address}
                 onChange={(event) => setAddress(event.target.value)}
               />
-              <select
-                className="inputOne"
-                value={country}
-                onChange={(event) => setCountry(event.target.value)}
-              >
-                {countries.map(country => (<option value={country.value}>{country.name}</option>))}
-              </select>
               <input
                 className="inputOne"
-                placeholder="Email"
-                email="email"
-                type='email'
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-              />
-              <input
-                className="inputOne"
-                placeholder="Street2 (optional)"
+                placeholder="Apartment, suite, etc. (optional)"
                 name="street"
                 type='text'
                 value={street}
                 onChange={(event) => setStreet(event.target.value)}
               />
+
               <input
                 className="inputOne"
                 placeholder="City"
@@ -173,11 +161,37 @@ function Cart(props) {
               />
               <input
                 className="inputOne"
+                placeholder="Email"
+                email="email"
+                type='email'
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+              />
+              <div className="spaceBetweenForm"></div>
+              <div className="spaceBetweenForm"></div>
+              <select
+                className="inputOne"
+                value={country}
+                onChange={(event) => setCountry(event.target.value)}
+              >
+                {countries.map(country => (<option value={country.value}>{country.name}</option>))}
+              </select>
+              <input
+                className="inputOne"
                 placeholder={country === 'CA' ? 'Province' : 'State'}
                 name="state"
                 type='text'
                 value={state}
                 onChange={(event) => setState(event.target.value)}
+              />
+              <div className="spaceBetweenForm"></div>
+              <input
+                className="inputOne"
+                placeholder={country === 'CA' ? 'Postal Code' : 'Zip'}
+                name="zip"
+                type='text'
+                value={zip}
+                onChange={(event) => setZip(event.target.value)}
               />
               <input
                 className="inputOne"
@@ -187,14 +201,7 @@ function Cart(props) {
                 value={phone}
                 onChange={(event) => setPhone(event.target.value)}
               />
-              <input
-                className="inputOne"
-                placeholder={country === 'CA' ? 'Postal Code' : 'Zip'}
-                name="zip"
-                type='text'
-                value={zip}
-                onChange={(event) => setZip(event.target.value)}
-              />
+              <div className="spaceBetweenForm"></div>
               
               <div className="addressSubmit" type="submit" onClick={hanldeSubmit}>submit</div>
             </div>

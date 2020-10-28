@@ -144,7 +144,7 @@ const generateLocalShipment = (to_address, cartItems, res) => {
     // console.log(shipment)
     // res.send({ shipmentFee:shipment})
     // });
-    const selectedShipment = shipment.rates.find(rate => rate.service === 'RegularParcel')
+    const selectedShipment = shipment.rates.find(rate => rate.service === 'SmallPacketInternationalAir')
     console.log("selectedShipment", selectedShipment)
     shipment.buy(shipment.lowestRate(), selectedShipment.rate)
       .then(() => {
@@ -225,7 +225,7 @@ const generateInternationalShipment = (to_address, cartItems, res) => {
         console.log(rate.rate);
         console.log(rate.id);
       });
-      const selectedShipment = shipment.rates.find(rate => rate.service === 'SmallPacketUSAAir')
+      const selectedShipment = shipment.rates.find(rate => rate.service === 'SmallPacketInternationalSurface')
       console.log("selectedShipment", selectedShipment)
       shipment.buy(shipment.lowestRate(), selectedShipment.rate)
         .then(() => {

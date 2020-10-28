@@ -42,7 +42,7 @@ function OurMessage() {
       <div className="standard">Inside each Sache of Ravya Turmeric Infusion lies 5 different kinds of turmeric, blended to
 perfection.</div>
       <div ref= {aboutAnimateGo => {aboutAnimate = aboutAnimateGo}} className="about">Simple, Clean, and Delicious</div>
-      <div style={{position:"relative", bottom:"70px"}} className="explore">Explore The Range</div>
+      <div className="explore">Explore The Range</div>
       </div>
     </div>
   );
