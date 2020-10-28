@@ -1,5 +1,6 @@
 import React from 'react';
 import {motion} from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 function RecipeChickpea () {
     const transitionDelay = { delay: 1, duration: 2, ease: [0.6, 0.01, -0.1, 0.96] };
@@ -50,7 +51,7 @@ function RecipeChickpea () {
             <div className="nextRecipe">
                 <div className="readNext">Next Recipe</div>
                 <div className="nameOfRecipe">Ravya + Rice</div>
-                <div className="nextImage"><img src="/images/RecipeThree.jpg"/></div>
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 1 }} className="nextImage"><Link to="/home/Recipe/Rice"><img src="/images/RecipeThree.jpg"/></Link></motion.div>
             </div>
         </motion.div>
     );

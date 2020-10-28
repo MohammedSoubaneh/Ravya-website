@@ -1,5 +1,6 @@
 import React, {useRef, useEffect} from 'react';
 import { gsap, Power3 } from  'gsap';
+import {motion} from 'framer-motion';
 
 function Hero() {
   let heroTextAnimation = useRef(null)
@@ -47,13 +48,13 @@ function Hero() {
   }, [])
 
 
-
+  const transitionDelay = { delay: 1, duration: 2, ease: [0.6, 0.01, -0.1, 0.96] };
 
   
 
 
   return (
-    <div>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={transitionDelay}>
       <div className="firstAnimate">
       <div className="heroSectionContainer">
       <div className="bannerBgConatiner">
@@ -67,7 +68,7 @@ function Hero() {
       </div>
       </div>
       </div>
-    </div> 
+    </motion.div> 
   );
 }
 
