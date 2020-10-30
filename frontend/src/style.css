@@ -277,6 +277,12 @@
   font-family: "Playfair Display SC",serif;
 }
 
+@media screen and (max-width: 500px) {
+  .app .sectionTwoGrid .whoWeAre .ourMessage {
+    font-size: 4vw;
+  }
+}
+
 .app .sectionTwoGrid .whoWeAre .standard {
   -ms-grid-column: 1;
   -ms-grid-column-span: 23;
@@ -291,6 +297,12 @@
   font-weight: 100;
 }
 
+@media screen and (max-width: 500px) {
+  .app .sectionTwoGrid .whoWeAre .standard {
+    font-size: 3vw;
+  }
+}
+
 .app .sectionTwoGrid .whoWeAre .about {
   -ms-grid-column: 1;
   -ms-grid-column-span: 23;
@@ -301,6 +313,14 @@
   opacity: 0;
   font-size: 2.5vw;
   font-family: "Playfair Display SC",serif;
+}
+
+@media screen and (max-width: 500px) {
+  .app .sectionTwoGrid .whoWeAre .about {
+    font-size: 3vw;
+    position: relative;
+    bottom: 3rem;
+  }
 }
 
 .app .sectionTwoGrid .whoWeAre .explore {
@@ -320,6 +340,12 @@
   .app .sectionTwoGrid .whoWeAre .explore {
     -ms-grid-row: 8;
     grid-row: 8;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .app .sectionTwoGrid .whoWeAre .explore {
+    font-size: 3.5vw;
   }
 }
 
@@ -1068,6 +1094,13 @@
   font-weight: 500;
 }
 
+@media screen and (max-width: 500px) {
+  .app .largeHeroContainer .largeHeroInner .productText h1 {
+    position: relative;
+    bottom: 10rem;
+  }
+}
+
 .app .largeHeroContainer .largeHeroInner .productText h2 {
   -ms-grid-column: 1;
   -ms-grid-column-span: 23;
@@ -1080,6 +1113,13 @@
   font-weight: 50;
 }
 
+@media screen and (max-width: 500px) {
+  .app .largeHeroContainer .largeHeroInner .productText h2 {
+    position: relative;
+    bottom: 12rem;
+  }
+}
+
 .app .largeHeroContainer .largeHeroInner .productText .price {
   -ms-grid-column: 1;
   -ms-grid-column-span: 23;
@@ -1090,6 +1130,13 @@
   bottom: 2.5rem;
   font-size: 2.5rem;
   margin: 0;
+}
+
+@media screen and (max-width: 500px) {
+  .app .largeHeroContainer .largeHeroInner .productText .price {
+    position: relative;
+    bottom: 12rem;
+  }
 }
 
 .app .largeHeroContainer .largeHeroInner .productText .delivery {
@@ -1120,6 +1167,13 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 500px) {
+  .app .largeHeroContainer .largeHeroInner .productText .addToCart {
+    position: relative;
+    bottom: 12rem;
+  }
+}
+
 @media screen and (max-width: 1025px) {
   .app .largeHeroContainer .largeHeroInner .productText .addToCart {
     -ms-grid-column: 12;
@@ -1139,7 +1193,6 @@
   -ms-grid-rows: (1fr)[23];
       grid-template-rows: repeat(23, 1fr);
   font-family: 'Playfair Display SC', serif;
-  background-color: darkgrey;
 }
 
 .app .largeHeroContainer .howToMakeContainer .howToMakeInner {
@@ -1161,6 +1214,8 @@
     -ms-grid-column-span: 23;
     grid-column: 1 / 24;
     padding: 30px;
+    position: relative;
+    bottom: 34rem;
   }
 }
 
@@ -1344,6 +1399,8 @@
 @media screen and (max-width: 500px) {
   .app .largeHeroContainer .brillianCup {
     font-size: 22px;
+    position: relative;
+    bottom: 18rem;
   }
 }
 
@@ -1404,6 +1461,10 @@
       -ms-flex-align: center;
           align-items: center;
   font-size: 1.8vw;
+  font-family: 'Arapey', serif;
+  position: relative;
+  bottom: 6rem;
+  line-height: 45px;
 }
 
 @media screen and (max-width: 1025px) {
@@ -1688,6 +1749,13 @@
   }
 }
 
+@media screen and (max-width: 500px) {
+  .app .productGridContainer .productGridInnerContainer .ravyaProducts {
+    position: relative;
+    bottom: 8rem;
+  }
+}
+
 .app .productGridContainer .productGridInnerContainer .ravyaProducts .images {
   padding-left: 40px;
   padding-right: 40px;
@@ -1703,12 +1771,31 @@
 @media screen and (max-width: 1025px) {
   .app .productGridContainer .productGridInnerContainer .ravyaProducts .ravyaName {
     text-align: center;
+    font-size: 4vw;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .app .productGridContainer .productGridInnerContainer .ravyaProducts .ravyaName {
+    font-size: 4vw;
   }
 }
 
 .app .productGridContainer .productGridInnerContainer .ravyaProducts .pricing {
   font-family: 'Spectral', serif;
   font-size: 1.5vw;
+}
+
+@media screen and (max-width: 1025px) {
+  .app .productGridContainer .productGridInnerContainer .ravyaProducts .pricing {
+    font-size: 4vw;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .app .productGridContainer .productGridInnerContainer .ravyaProducts .pricing {
+    font-size: 4vw;
+  }
 }
 
 .app .cart {

@@ -216,7 +216,7 @@ function Cart(props) {
           <div className="subTotalMain">
             Subtotal{/*({cartItems.reduce((a, c) => a + c.qty, 0)} items)*/}:&nbsp;${cartItems.reduce((a, c) => a + c.price * c.qty, shipmentFee)}
           </div>
-          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 1 }} className="buttonPrimaryMain" disabled={cartItems.length === 0} role="link" onClick={handleClick}>Proceed to Checkout</motion.div>
+          <motion.div whileTap={{ scale: 1.1 }} className="buttonPrimaryMain" disabled={cartItems.length === 0} role="link" onClick={handleClick}>Proceed to Checkout</motion.div>
         </div>
         <div className="cartSpace"></div>
       </div>

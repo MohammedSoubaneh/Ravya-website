@@ -7,7 +7,12 @@ function RecipeRice () {
     return(
         <motion.div className="recipeContainer" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={transitionDelay}>
             <div className="heroText">Ravya + Rice</div>
-            <div className="recipeDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+            <div className="recipeDescription">No one wants a heap full of bland, unflavored rice that dampens the experience of your entire
+                    meal. So activate a variety of your senses through not only the consuming but preparation process
+                    of Ravya Turmeric Rice. Although delicious on the pallet with savory flavors and a wholesome,
+                    aromatic smell, the main attraction about the Ravya Turmeric Rice is how vibrant the dish is. Quick
+                    and easy in preparation, this fluffed up rice dish is the visual element that was missing from your
+                    tasty but dull looking buffet.</div>
             <div className="instructionContainer">
                 <div className="whatYouNeed">
                 <p>What You Need</p>

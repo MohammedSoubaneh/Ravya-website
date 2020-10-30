@@ -7,7 +7,12 @@ function RecipeChickpea () {
     return(
         <motion.div className="recipeContainer" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={transitionDelay}>
             <div className="heroText">Ravya + Chickpea Curry</div>
-            <div className="recipeDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+            <div className="recipeDescription">Curry is the perfect hearty meal. Vegan by composition, the Ravya Turmeric Chickpea Curry is a
+                    great way to diversify your diet if you are normally attracted to a meaty meal. This aromatic and
+                    well-rounded Chickpea Curry is perfect for an evening dish or as the main attraction for a dinner
+                    party. Packed with vitamins and nutrients, the Ravya Turmeric Chickpea Curry contains many
+                    elements that have strong, natural anti-inflammatory properties. Try out the recipe today for a
+                    healthy, creamy, and delicious mouthful.</div>
             <div className="instructionContainer">
                 <div className="whatYouNeed">
                 <p>What You Need</p>

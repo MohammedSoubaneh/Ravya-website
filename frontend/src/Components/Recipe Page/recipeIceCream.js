@@ -7,7 +7,11 @@ function RecipeIceCream () {
     return(
         <motion.div className="recipeContainer" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={transitionDelay}>
             <div className="heroText">Ravya + Ice Cream</div>
-            <div className="recipeDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+            <div className="recipeDescription">Store bought ice cream is a thin and watered down experience of one of life’s wonderfully cool and
+                creamy delights. Through a process that is simple and rewarding, you could be enjoying your very
+                own homemade Ravya Turmeric Ice Cream by morning. A healthy and delicious alternative to the
+                standard dairy decadence, this vegetarian ice cream delivers a cool and creamy coating to your
+                pallet with a pop of Ravya Turmeric color.</div>
             <div className="instructionContainer">
                 <div className="whatYouNeed">
                 <p>What You Need</p>

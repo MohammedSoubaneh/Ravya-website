@@ -231,7 +231,7 @@ const generateInternationalShipment = (to_address, cartItems, res) => {
       shipment.buy(shipment.lowestRate(), selectedShipment.rate)
         .then(() => {
           console.log("BUY SHIPMENT", shipment)
-          res.send({ shipmentFee: shipment.selected_rate.rate })
+          res.send({ shipmentFee: shipment.selected_rate.rate})
         }
         ).catch(err => {
           console.log("BUY ERROR", err)
