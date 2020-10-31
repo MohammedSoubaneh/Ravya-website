@@ -5,14 +5,15 @@ import { addToCart, removeFromCart } from '../../actions/cartAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadStripe } from '@stripe/stripe-js';
 import { motion } from 'framer-motion';
+import Loader from '../Loader/Loader';
 
 const stripePromise = loadStripe('pk_test_51HLEnyGLtWDqx1qOuhwNOtq65b6yePscQjYcES7rTYRJK0R44QMWo4i1R4VAf3GLDv1Gg3jQ4pezZDWoFDiRXL0L005dHHnLqM');
 
 const countries = [
   { name: "Canada", value: 'CA' },
   { name: "USA", value: 'US' },
-  { name: "Germany", value: 'DE'},
-  { name: "France", value: 'FR'}
+  { name: "Germany", value: 'DE' },
+  { name: "France", value: 'FR' }
 
 ]
 function Cart(props) {
@@ -27,6 +28,7 @@ function Cart(props) {
   const [street, setStreet] = useState("")
   const [shipmentFee, setShipment] = useState(0)
   const [country, setCountry] = useState('CA')
+  const [isLoading, setLoader] = useState(false)
   const cart = useSelector(state => state.cart);
   const { cartItems } = cart;
   const productId = props.match.params.id;
@@ -41,55 +43,81 @@ function Cart(props) {
     }
   }, []);
   const handleClick = async (event) => {
-    const stripe = await stripePromise;
-
-    const data = cartItems.map(item => (
-      {
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: item.name,
-            images: [item.image],
+    try {
+      if (shipmentFee && shipmentFee !== 0) {
+        setLoader(true)
+        const stripe = await stripePromise;
+        const data = cartItems.map(item => (
+          {
+            price_data: {
+              currency: 'usd',
+              product_data: {
+                name: item.name,
+                images: [item.image],
+              },
+              unit_amount: item.price * 100,
+            },
+            quantity: item.qty
+          }
+        ))
+        data.push({
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: 'Shipping Cost',
+              images: ['https://logos-download.com/wp-content/uploads/2016/10/Canada_Post_logo_logotype.png'],
+            },
+            unit_amount: shipmentFee * 100,
           },
-          unit_amount: item.price * 100,
-        },
-        quantity: item.qty
-      }
-    ))
-    data.push({
-      price_data: {
-        currency: 'usd',
-        product_data: {
-          name: 'Shipping Cost',
-          images: ['https://logos-download.com/wp-content/uploads/2016/10/Canada_Post_logo_logotype.png'],
-        },
-        unit_amount: shipmentFee * 100,
-      },
-      quantity: 1
-    })
-    const response = await axios.post("/create-session", { cartItems: data })
-    const session = await response.data;
-    console.log("SESSION", session)
-    // When the customer clicks on the button, redirect them to Checkout.
-    const result = await stripe.redirectToCheckout({
-      sessionId: session.id,
-    });
-    if (result.error) {
-      alert(result.error)
+          quantity: 1
+        })
+        const response = await axios.post("/create-session", { cartItems: data })
+        const session = await response.data;
+        console.log("SESSION", session)
+        // When the customer clicks on the button, redirect them to Checkout.
+        setLoader(false)
+        const result = await stripe.redirectToCheckout({
+          sessionId: session.id,
+        });
+        if (result.error) {
+          alert(result.error)
 
+        }
+      }
+      else {
+        alert("Please Add shipping address before proceed to checkout!")
+      }
+    } catch (error) {
+      console.log("checkout err", error)
+      setLoader(false)
+      alert("Something went wrong, please try again!")
     }
   };
   const hanldeSubmit = async (event) => {
     event.preventDefault()
-    let residential
-    let company
-    addressType === "company" ? company = true : residential = true
-    console.log({ address, name, email, zip, city, state, addressType, phone, company, residential, country })
-    const data = { address, name, email, zip, city, state, addressType, phone, country }
-    const response = await axios.post("/api/create-shipment", { to_address: data, cartItems })
-    const fee = await response.data;
-    console.log("Shipment Fee", fee)
-    setShipment(parseFloat(fee.shipmentFee))
+    try {
+      setLoader(true)
+      let residential
+      let company
+      addressType === "company" ? company = true : residential = true
+      console.log({ address, name, email, zip, city, state, addressType, phone, company, residential, country })
+      const data = { address, name, email, zip, city, state, addressType, phone, country }
+      const response = await axios.post("/api/create-shipment", { to_address: data, cartItems })
+      const fee = await response.data;
+      if (fee) {
+        console.log("Shipment Fee", fee)
+        setShipment(parseFloat(fee.shipmentFee))
+        setLoader(false)
+      }
+      else{
+        setLoader(false)
+        alert("Something went wrong, please check your address and try again!")
+      }
+    } catch (error) {
+      console.log('err', error)
+      setLoader(false)
+      alert("Something went wrong, please check your address and try again!")
+    }
   }
   return (
     <div className="cartContainer">
@@ -203,7 +231,7 @@ function Cart(props) {
                 onChange={(event) => setPhone(event.target.value)}
               />
               <div className="spaceBetweenForm"></div>
-              
+
               <div className="addressSubmit" type="submit" onClick={hanldeSubmit}>submit</div>
             </div>
           </div>
@@ -220,6 +248,7 @@ function Cart(props) {
         </div>
         <div className="cartSpace"></div>
       </div>
+      {isLoading && <Loader />}
     </div>
 
   )
