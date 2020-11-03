@@ -61,19 +61,19 @@ const getParcelDimensions = (cart) => {
   const totalParcelWeight = parseFloat(weights.reduce((a, c) => a + c.totalWeight, 0).toFixed(1))
   console.log("WEIGHTS", weights)
   console.log("TOTAL PARCEL WEIGTH", totalParcelWeight, totalQuantity)
-  if (totalQuantity <= 5) {
+  if (totalQuantity <= 3) {
     return {
       weight: totalParcelWeight,
       ...boxes.small,
     }
   }
-  if (totalQuantity <= 10) {
+  if (totalQuantity <= 5) {
     return {
       weight: totalParcelWeight,
       ...boxes.medium,
     }
   }
-  if (totalQuantity <= 15) {
+  if (totalQuantity <= 10) {
     return {
       weight: totalParcelWeight,
       ...boxes.large,

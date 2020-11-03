@@ -23,6 +23,9 @@ $iphonemini: 350px;
             top: 20px;
             font-family: 'Playfair Display SC', serif;
             letter-spacing: 5px;
+            @media screen and (max-width: $ipad) {
+                font-size: 4vw;
+            }
             @media screen and (max-width: $iphone) {
                 font-size: 4vw;
             }
@@ -40,6 +43,14 @@ $iphonemini: 350px;
             justify-content: center;
             position: relative;
             top: 20px;
+        }
+        .shop {
+            @media screen and (max-width: $ipad) {
+                font-size: 2vw;
+            }
+            @media screen and (max-width: $iphone) {
+                font-size: 3.5vw;
+            }
         }
         .active-shop{
             text-decoration: none;
@@ -742,10 +753,13 @@ $iphonemini: 350px;
                 grid-column: 1 / 24;
                 position: relative;
                 text-align: center;
-                top: 10rem;
+                top: 16rem;
                 font-size: 4rem;
                 font-weight: 50;
+                @media screen and (max-width: $ipad) {
+                }
                 @media screen and (max-width: $iphone) {
+                    top: 10rem;
                     font-size: 24px;
                 }
             }
@@ -1003,6 +1017,26 @@ $iphonemini: 350px;
                     }
 
                 }
+            }
+            .howToMakeVideo {
+                grid-column: 13 / 22;
+                grid-row: span 15;
+                position: relative;
+                top: 10rem;
+                .videoPlayer{
+                   width: 45vw;
+                   height: 65vh;
+                   @media screen and (max-width: $ipad) {
+                       position: relative;
+                       top: 8rem;
+                       height: 45vh;
+                   }
+                @media screen and (max-width: $iphone) {
+                  display: none;
+                }
+
+                }
+                
             }
         }
         .brillianCup {

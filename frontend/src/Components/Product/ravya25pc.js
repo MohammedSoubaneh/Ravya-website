@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { detailsProduct } from '../../actions/productAction';
 import {motion} from 'framer-motion';
-
+import ReactPlayer from 'react-player';
+import VideoPlayer from 'react-video-js-player';
 
 
 
@@ -59,7 +60,14 @@ function RavyaProductPageLarge(props){
                     <div className="stepThreeTitle">Step Three</div>
                     <div className="stepThreeInstruction">Dip the Infusion a few times and allow it to infuse for 3-4 minutes. Add Sweeteners as per your taste and Enjoy!</div>
             </div>
-            <div className="howToMakeVideo"></div>
+            <div className="howToMakeVideo">
+                <VideoPlayer
+                className="videoPlayer"  
+                src="/images/videoplayback.mp4"
+                playbackRates={[0.5, 1, 3.85, 16]}
+                muted={false}
+                />
+            </div>
             </div>
             </div>
             </>

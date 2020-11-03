@@ -85,7 +85,7 @@ function Cart(props) {
         }
       }
       else {
-        alert("Please Add shipping address before proceed to checkout!")
+        alert("Please add a shipping address and hit submit before you proceed to checkout.")
       }
     } catch (error) {
       console.log("checkout err", error)
@@ -111,12 +111,12 @@ function Cart(props) {
       }
       else{
         setLoader(false)
-        alert("Something went wrong, please check your address and try again!")
+        alert("Something went wrong, please check your address and try again")
       }
     } catch (error) {
       console.log('err', error)
       setLoader(false)
-      alert("Something went wrong, please check your address and try again!")
+      alert("Something went wrong, please check your address and try again")
     }
   }
   return (

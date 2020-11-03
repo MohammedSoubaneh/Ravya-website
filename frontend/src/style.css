@@ -33,6 +33,12 @@
   letter-spacing: 5px;
 }
 
+@media screen and (max-width: 1025px) {
+  .app .header .container .logo {
+    font-size: 4vw;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .app .header .container .logo {
     font-size: 4vw;
@@ -60,6 +66,18 @@
           justify-content: center;
   position: relative;
   top: 20px;
+}
+
+@media screen and (max-width: 1025px) {
+  .app .header .container .shop {
+    font-size: 2vw;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .app .header .container .shop {
+    font-size: 3.5vw;
+  }
 }
 
 .app .header .container .active-shop {
@@ -969,13 +987,14 @@
   grid-column: 1 / 24;
   position: relative;
   text-align: center;
-  top: 10rem;
+  top: 16rem;
   font-size: 4rem;
   font-weight: 50;
 }
 
 @media screen and (max-width: 500px) {
   .app .productHeroContainer .productHeroInner h1 {
+    top: 10rem;
     font-size: 24px;
   }
 }
@@ -1367,6 +1386,34 @@
   .app .largeHeroContainer .howToMakeContainer .howToMakeInner .stepThreeInstruction {
     text-align: center;
     font-size: 18px;
+  }
+}
+
+.app .largeHeroContainer .howToMakeContainer .howToMakeVideo {
+  -ms-grid-column: 13;
+  -ms-grid-column-span: 9;
+  grid-column: 13 / 22;
+  grid-row: span 15;
+  position: relative;
+  top: 10rem;
+}
+
+.app .largeHeroContainer .howToMakeContainer .howToMakeVideo .videoPlayer {
+  width: 45vw;
+  height: 65vh;
+}
+
+@media screen and (max-width: 1025px) {
+  .app .largeHeroContainer .howToMakeContainer .howToMakeVideo .videoPlayer {
+    position: relative;
+    top: 8rem;
+    height: 45vh;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .app .largeHeroContainer .howToMakeContainer .howToMakeVideo .videoPlayer {
+    display: none;
   }
 }
 

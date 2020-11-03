@@ -18,7 +18,7 @@ function Hero() {
       {
         opacity: 1,
         y: -20,
-        delay: 1.2,
+        delay: 2.5,
         ease: Power3.easeOut
       }
     )
@@ -28,7 +28,7 @@ function Hero() {
       {
         opacity: 1,
         y: -20,
-        delay: 1.5,
+        delay: 3,
         ease: Power3.easeOut
       }
     )
