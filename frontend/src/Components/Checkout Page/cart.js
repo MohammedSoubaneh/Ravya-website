@@ -16,6 +16,9 @@ const countries = [
   { name: "France", value: 'FR' }
 
 ]
+
+const additionalShipmentCharges = 1.00
+
 function Cart(props) {
   const [address, setAddress] = useState("")
   const [name, setName] = useState("")
@@ -44,7 +47,7 @@ function Cart(props) {
   }, []);
   const handleClick = async (event) => {
     try {
-      if (shipmentFee && shipmentFee !== 0) {
+      if (shipmentFee && shipmentFee !== additionalShipmentCharges && shipmentFee !== 0) {
         setLoader(true)
         const stripe = await stripePromise;
         const data = cartItems.map(item => (
@@ -106,10 +109,10 @@ function Cart(props) {
       const fee = await response.data;
       if (fee) {
         console.log("Shipment Fee", fee)
-        setShipment(parseFloat(fee.shipmentFee))
+        setShipment(parseFloat(fee.shipmentFee) + additionalShipmentCharges)
         setLoader(false)
       }
-      else{
+      else {
         setLoader(false)
         alert("Something went wrong, please check your address and try again")
       }
@@ -242,7 +245,7 @@ function Cart(props) {
             Shipping Cost{/*({cartItems.reduce((a, c) => a + c.qty, 0)} items)*/}:&nbsp;${shipmentFee}
           </div>
           <div className="subTotalMain">
-            Subtotal{/*({cartItems.reduce((a, c) => a + c.qty, 0)} items)*/}:&nbsp;${cartItems.reduce((a, c) => a + c.price * c.qty, shipmentFee)}
+            Subtotal{/*({cartItems.reduce((a, c) => a + c.qty, 0)} items)*/}:&nbsp;${cartItems.reduce((a, c) => a + c.price * c.qty, shipmentFee).toFixed(2)}
           </div>
           <motion.div whileTap={{ scale: 1.1 }} className="buttonPrimaryMain" disabled={cartItems.length === 0} role="link" onClick={handleClick}>Proceed to Checkout</motion.div>
         </div>
