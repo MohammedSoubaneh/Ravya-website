@@ -1,6 +1,6 @@
-export default  {
+export default {
 
-    products : [{
+    products: [{
         _id: 'Ravya-25pc',
         title: 'For Your Health',
         name: 'Ravya Turmeric Infusion 25pc',
@@ -11,11 +11,11 @@ export default  {
         countInStock: 5,
         size: "100%",
         headerTop: "30px",
-        spaceApart: "60px", 
+        spaceApart: "60px",
         heroImage: '/images/productImage.png',
         productWidth: '700px',
         // weight: '0.045'
-        weight:4.23288
+        weight: 4.23288
     },
     {
         _id: 'Ravya-15pc',
@@ -27,18 +27,18 @@ export default  {
         brand: 'Ravya',
         countInStock: 5,
         size: "100%",
-        produtcLeft: "20px", 
+        produtcLeft: "20px",
         headerTop: "35px",
         heroImage: '/images/productImage2.png',
         productWidth: '700px',
         // weight: '0.023'
-        weight:2.64555 
+        weight: 2.64555
     },
     {
         _id: 'Ravya-2pc',
         title: 'For Someone Special',
         name: 'Ravya Turmeric Infusion 2pc',
-        image:'https://i.ibb.co/bNGmSqb/New2pc.jpg',
+        image: 'https://i.ibb.co/bNGmSqb/New2pc.jpg',
         cartImage: 'https://i.ibb.co/2tQKfPS/New2pc-Cart.jpg',
         price: 4.00,
         brand: 'Ravya',
@@ -49,10 +49,10 @@ export default  {
         heroImage: '/images/productImage3.png',
         productWidth: '700px',
         // weight: '0.002'
-        weight:0.35274
-        
+        weight: 0.35274
+
     }],
-    customItems:[
+    customItems: [
         {
             "id": "cstitem_ab3b642ccbeb41e6a3e70237f6ab23bf",
             "object": "CustomsItem",
@@ -91,6 +91,62 @@ export default  {
             "weight": 0.352,
             "hs_tariff_number": "610912",
             "origin_country": "CA"
+        }
+    ],
+    coupons: [
+        {
+            "id": "j9lc22fk",
+            "object": "coupon",
+            "amount_off": null,
+            "created": 1604685102,
+            "currency": null,
+            "duration": "repeating",
+            "duration_in_months": 3,
+            "livemode": false,
+            "max_redemptions": null,
+            "metadata": {},
+            "name": "25.5% off",
+            "percent_off": 25,
+            "redeem_by": null,
+            "times_redeemed": 0,
+            "valid": true
+        }
+    ],
+    promo_codes: [
+        {
+            "id": "promo_1HkZmqGLtWDqx1qOGFhN5TzR",
+            "object": "promotion_code",
+            "active": true,
+            "code": "VIPCODE",
+            "coupon": {
+                "id": "j9lc22fk",
+                "object": "coupon",
+                "amount_off": null,
+                "created": 1604685102,
+                "currency": null,
+                "duration": "repeating",
+                "duration_in_months": 3,
+                "livemode": false,
+                "max_redemptions": null,
+                "metadata": {},
+                "name": "25.5% off",
+                "percent_off": 25,
+                "redeem_by": null,
+                "times_redeemed": 0,
+                "valid": true
+            },
+            "created": 1604687748,
+            "customer": null,
+            "expires_at": null,
+            "livemode": false,
+            "max_redemptions": null,
+            "metadata": {},
+            "restrictions": {
+                "first_time_transaction": false,
+                "minimum_amount": null,
+                "minimum_amount_currency": null
+            },
+            "times_redeemed": 0
         }
     ]
 
