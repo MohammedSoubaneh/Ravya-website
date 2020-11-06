@@ -37,12 +37,69 @@ app.get("/api/products/cart/", (req, res) => {
 
 const stripe = require('stripe')("sk_test_51HLEnyGLtWDqx1qOWBvKR2GMVhO50m9WJA3IQr2j0Yj6eJG028G7SrndLuvJIe1B9wQltDMU4bn8pi42xSTfMyok00gW15982r");
 
+app.post('/api/create-coupon', async (req, res) => {
+  const { coupon_type, duration, name, currency, duration_in_months, amount, percent_off } = req.body
+
+  try {
+    const coupon_obj = {
+      "duration": duration,
+      "name": name,
+      "currency": currency ? currency : "usd",
+      "duration_in_months": duration === "repeating" ? duration_in_months : null,
+    }
+    if (coupon_type === "on_amount") {
+      coupon_obj.amount_off = amount
+    }
+    else {
+      coupon_obj.percent_off = percent_off
+    }
+    const coupon = await stripe.coupons.create(coupon_obj);
+    if (coupon) {
+      res.status(200).send({ message: "coupon generated", coupon: coupon })
+    }
+    else {
+      res.status(400).send({ message: "error in generating coupon", error: "invalid coupon!" })
+    }
+  } catch (error) {
+    console.log("error in genrating coupon", error)
+    res.status(401).send({ message: "error in generating coupon", error: error.message })
+  }
+
+})
+
+app.post('/api/create-promotion', async (req, res) => {
+  const { coupon_id, code } = req.body
+
+  try {
+    if (!coupon_id || !code) {
+      res.status(401).send({ message: "error generating promo code", error: "coupon_id and promo code are required!" })
+    }
+    const promo_obj = {
+      coupon: coupon_id,
+      code
+    }
+
+    const promotionCode = await stripe.promotionCodes.create(promo_obj)
+
+    if (promotionCode) {
+      res.status(200).send({ message: "promoCode generated", promoCode: promotionCode })
+    }
+    res.status(401).send({ message: "error generating promo code", error: "invalid coupon id" })
+  }
+  catch (error) {
+    res.status(401).send({ message: "error generating promo code", error: error.message })
+
+  }
+
+})
+
 app.post('/create-session', async (req, res) => {
   console.log("SESSION BODY", JSON.stringify(req.body.cartItems))
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: req.body.cartItems,
     mode: 'payment',
+    allow_promotion_codes: true,
     success_url: `${"https://ravya.herokuapp.com/home/products"}?success=true`,
     cancel_url: `${"https://ravya.herokuapp.com/home/products"}?canceled=true`,
 
@@ -165,16 +222,16 @@ const generateCustomItems = (cart) => {
   const myItems = []
   data.customItems.map(customsItem => {
     cart.forEach(item => {
-     if(item.name === customsItem.description){
-       myItems.push(customsItem)
-     }
-   })
+      if (item.name === customsItem.description) {
+        myItems.push(customsItem)
+      }
+    })
 
   })
   return myItems
 }
 const generateInternationalShipment = (to_address, cartItems, res) => {
-  console.log("CUSTOM ITEMS",generateCustomItems(cartItems))
+  console.log("CUSTOM ITEMS", generateCustomItems(cartItems))
   const customsInfo = new api.CustomsInfo({
     eel_pfc: 'NOEEI 30.37(a)',
     customs_certify: true,
@@ -215,7 +272,7 @@ const generateInternationalShipment = (to_address, cartItems, res) => {
       parcel: getParcelDimensions(cartItems),
       customs_info: customs_info
     });
-  
+
     shipment.save().then(() => {
       // console.log("SHIPMENT", shipment)
       // res.send({ shipmentFee:shipment})
@@ -225,13 +282,13 @@ const generateInternationalShipment = (to_address, cartItems, res) => {
         console.log(rate.rate);
         console.log(rate.id);
       });
-      const selectedCarier = to_address.country === 'US' ? 'SmallPacketUSAAir'  : 'SmallPacketInternationalSurface'
+      const selectedCarier = to_address.country === 'US' ? 'SmallPacketUSAAir' : 'SmallPacketInternationalSurface'
       const selectedShipment = shipment.rates.find(rate => rate.service === selectedCarier)
       console.log("selectedShipment", selectedShipment)
       shipment.buy(shipment.lowestRate(), selectedShipment.rate)
         .then(() => {
           console.log("BUY SHIPMENT", shipment)
-          res.send({ shipmentFee: shipment.selected_rate.rate})
+          res.send({ shipmentFee: parseFloat(shipment.selected_rate.rate) })
         }
         ).catch(err => {
           console.log("BUY ERROR", err)
@@ -249,13 +306,13 @@ const generateInternationalShipment = (to_address, cartItems, res) => {
 app.post('/api/create-shipment', async (req, res) => {
   console.log(req.body.to_address)
   const { to_address, cartItems } = req.body
-    if(to_address.country === 'CA'){
-     return generateLocalShipment(to_address, cartItems, res)
-    }
-    else{
-      generateInternationalShipment(to_address, cartItems, res)
-    }
-    
+  if (to_address.country === 'CA') {
+    return generateLocalShipment(to_address, cartItems, res)
+  }
+  else {
+    generateInternationalShipment(to_address, cartItems, res)
+  }
+
 })
 // shipment.postage_label.label_url, shipment.tracking_code
 
