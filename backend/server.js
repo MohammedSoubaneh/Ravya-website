@@ -3,9 +3,11 @@ import cors from 'cors'
 import data from './data';
 import boxes from './boxes'
 var bodyParser = require('body-parser')
+const dotenv = require('dotenv')
+dotenv.config()
 
 const Easypost = require('@easypost/api');
-const api = new Easypost('EZTKeb57177d069a415b85711f53625a2edf009A8rRwysF0ma8tsdguiA');
+const api = new Easypost(process.env.EASYPOST_KEY);
 
 const path = require('path');
 const app = express();
@@ -35,7 +37,7 @@ app.get("/api/products/cart/", (req, res) => {
   res.send(data.products);
 });
 
-const stripe = require('stripe')("sk_test_51HLEnyGLtWDqx1qOWBvKR2GMVhO50m9WJA3IQr2j0Yj6eJG028G7SrndLuvJIe1B9wQltDMU4bn8pi42xSTfMyok00gW15982r");
+const stripe = require('stripe')(process.env. STRIPE_KEY);
 
 app.post('/api/create-coupon', async (req, res) => {
   const { coupon_type, duration, name, currency, duration_in_months, amount, percent_off } = req.body
