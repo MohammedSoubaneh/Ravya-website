@@ -37,7 +37,7 @@ app.get("/api/products/cart/", (req, res) => {
   res.send(data.products);
 });
 
-const stripe = require('stripe')(process.env. STRIPE_KEY);
+const stripe = require('stripe')(process.env.STRIPE_KEY);
 
 app.post('/api/create-coupon', async (req, res) => {
   const { coupon_type, duration, name, currency, duration_in_months, amount, percent_off } = req.body
@@ -94,20 +94,48 @@ app.post('/api/create-promotion', async (req, res) => {
   }
 
 })
+const checkForFreeItems = (cartItems) => {
+  const is25pc = cartItems.find(item => {
+    return item.price_data.product_data.name === 'Ravya Turmeric Infusion 25pc'
+  })
+  if (is25pc) {
+    cartItems.push({
+      "price_data": {
+        "currency": "usd",
+        "product_data": {
+          "name": "Free Ravya Turmeric Infusion 15pc",
+          "images": [
+            "https://i.ibb.co/6t92wwt/New15pc.jpg"
+          ]
+        },
+        "unit_amount": 0
+      },
+      "quantity": 2
+    })
+    return cartItems
+  }
+  return cartItems
+}
 
 app.post('/create-session', async (req, res) => {
-  console.log("SESSION BODY", JSON.stringify(req.body.cartItems))
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
-    line_items: req.body.cartItems,
-    mode: 'payment',
-    allow_promotion_codes: true,
-    success_url: `${"https://ravya.herokuapp.com/home/products"}?success=true`,
-    cancel_url: `${"https://ravya.herokuapp.com/home/products"}?canceled=true`,
+  try {
+    console.log("SESSION BODY", JSON.stringify(req.body.cartItems))
+    const { cartItems } = req.body
+    const cart = checkForFreeItems(cartItems)
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: cart,
+      mode: 'payment',
+      allow_promotion_codes: true,
+      success_url: `${"https://ravya.herokuapp.com/home/products"}?success=true`,
+      cancel_url: `${"https://ravya.herokuapp.com/home/products"}?canceled=true`,
 
-  });
-
-  res.json({ id: session.id });
+    });
+    res.json({ id: session.id });
+  } catch (error) {
+    console.log("error in session create", error)
+    res.json(401).send({ message: "error in creating stripe session", err })
+  }
 
 });
 
