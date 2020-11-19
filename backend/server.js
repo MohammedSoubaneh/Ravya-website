@@ -4,12 +4,14 @@ import data from './data';
 import boxes from './boxes'
 var bodyParser = require('body-parser')
 const dotenv = require('dotenv')
+const Order = require('./models/order')
 dotenv.config()
 
 const Easypost = require('@easypost/api');
 const api = new Easypost(process.env.EASYPOST_KEY);
 
 const path = require('path');
+require('./database/mongoose')
 const app = express();
 app.use(cors())
 var jsonParser = bodyParser.json()
@@ -119,18 +121,21 @@ const checkForFreeItems = (cartItems) => {
 
 app.post('/create-session', async (req, res) => {
   try {
-    console.log("SESSION BODY", JSON.stringify(req.body.cartItems))
-    const { cartItems } = req.body
+    // console.log("SESSION BODY", JSON.stringify(req.body.cartItems))
+    const { cartItems, order } = req.body
+    // const shipmentOrder = await Order.findById(order)
     const cart = checkForFreeItems(cartItems)
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: cart,
       mode: 'payment',
       allow_promotion_codes: true,
-      success_url: `${"https://ravya.herokuapp.com/home/products"}?success=true`,
-      cancel_url: `${"https://ravya.herokuapp.com/home/products"}?canceled=true`,
+      success_url: `${"https://www.ravya.ca"}?success=true`,
+      cancel_url: `${"https://www.ravya.ca"}?canceled=true`,
 
     });
+    const shipmentOrder = await Order.findByIdAndUpdate({ _id: order }, { session_id: session.id })
+    console.log("order in session", shipmentOrder)
     res.json({ id: session.id });
   } catch (error) {
     console.log("error in session create", error)
@@ -187,7 +192,7 @@ app.post('/api/create-customs_item', async (req, res) => {
   });
 })
 
-const generateLocalShipment = (to_address, cartItems, res) => {
+const generateLocalShipment = async (to_address, cartItems, res) => {
   const shipment = new api.Shipment({
     to_address: {
       'name': to_address.name,
@@ -220,8 +225,17 @@ const generateLocalShipment = (to_address, cartItems, res) => {
     parcel: getParcelDimensions(cartItems)
   });
 
-  shipment.save().then(() => {
-    console.log("SHIPMENT", shipment)
+  shipment.save().then(async () => {
+    try {
+      console.log("SHIPMENT", shipment)
+      console.log("SHIPMENT RATE", shipment.lowestRate())
+      const order = await Order({ shipment_id: shipment.id, selected_rate: shipment.lowestRate() }).save()
+      console.log("order", order)
+      res.send({ shipmentFee: shipment.lowestRate().rate, order: order._id })
+    } catch (error) {
+      console.log('shipment create error', error)
+    }
+
     // res.send({ shipmentFee:shipment})
     // shipment.rates.forEach(rate => {
     //   console.log(rate.carrier);
@@ -231,17 +245,19 @@ const generateLocalShipment = (to_address, cartItems, res) => {
     // console.log(shipment)
     // res.send({ shipmentFee:shipment})
     // });
-    const selectedShipment = shipment.rates.find(rate => rate.service === 'RegularParcel')
-    console.log("selectedShipment", selectedShipment)
-    shipment.buy(shipment.lowestRate(), selectedShipment.rate)
-      .then(() => {
-        console.log("BUY SHIPMENT", shipment)
-        res.send({ shipmentFee: shipment.selected_rate.rate })
-      }
-      ).catch(err => {
-        console.log("BUY ERROR", err)
-        res.status(401).send({ message: "some thing went wrong", err })
-      });
+
+    //////////////// buy shipment /////////////
+    // const selectedShipment = shipment.rates.find(rate => rate.service === 'RegularParcel')
+    // console.log("selectedShipment", selectedShipment)
+    // shipment.buy(shipment.lowestRate(), selectedShipment.rate)
+    //   .then(() => {
+    //     console.log("BUY SHIPMENT", shipment)
+    //     res.send({ shipmentFee: shipment.selected_rate.rate })
+    //   }
+    //   ).catch(err => {
+    //     console.log("BUY ERROR", err)
+    //     res.status(401).send({ message: "some thing went wrong", err })
+    //   });
   }).catch(err => {
     console.log("SHIPMENT ERROR", err)
     res.status(401).send({ message: "some thing went wrong", err })
@@ -303,27 +319,16 @@ const generateInternationalShipment = (to_address, cartItems, res) => {
       customs_info: customs_info
     });
 
-    shipment.save().then(() => {
-      // console.log("SHIPMENT", shipment)
-      // res.send({ shipmentFee:shipment})
-      shipment.rates.forEach(rate => {
-        console.log(rate.carrier);
-        console.log(rate.service);
-        console.log(rate.rate);
-        console.log(rate.id);
-      });
-      const selectedCarier = to_address.country === 'US' ? 'SmallPacketUSAAir' : 'SmallPacketInternationalSurface'
-      const selectedShipment = shipment.rates.find(rate => rate.service === selectedCarier)
-      console.log("selectedShipment", selectedShipment)
-      shipment.buy(shipment.lowestRate(), selectedShipment.rate)
-        .then(() => {
-          console.log("BUY SHIPMENT", shipment)
-          res.send({ shipmentFee: parseFloat(shipment.selected_rate.rate) })
-        }
-        ).catch(err => {
-          console.log("BUY ERROR", err)
-          res.status(401).send({ message: "some thing went wrong", err })
-        });
+    shipment.save().then(async () => {
+      try {
+        console.log("SHIPMENT", shipment)
+        console.log("SHIPMENT RATE", shipment.lowestRate())
+        const order = await Order({ shipment_id: shipment.id, selected_rate: shipment.lowestRate() }).save()
+        console.log("order", order)
+        res.send({ shipmentFee: shipment.lowestRate().rate, order: order._id })
+      } catch (error) {
+        console.log('shipment create error', error)
+      }
     }).catch(err => {
       console.log("SHIPMENT ERROR", err)
       res.status(401).send({ message: "some thing went wrong", err })
@@ -345,7 +350,40 @@ app.post('/api/create-shipment', async (req, res) => {
 
 })
 // shipment.postage_label.label_url, shipment.tracking_code
+// app.get('/api/get-orders', async (req, res) => {
+//   try {
+//     const { status } = req.query
+//     console.log("get orders",status)
+//     const shipmentOrders = await Order.find({ payment_status: status })
+//     res.send({ orders: shipmentOrders })
+//   } catch (error) {
+//     res.status(500).send({ message: "error in getting orders", error })
+//   }
+// })
 
+app.post('/api/buy-shipment', async (req, res) => {
+  try {
+    const { stripe_session } = req.body
+    const shipmentOrder = await Order.findOne({ session_id: stripe_session })
+    const shipment = await api.Shipment.retrieve(shipmentOrder.shipment_id)
+    shipment.buy(shipment.lowestRate())
+      .then(async (shipment) => {
+        console.log("BUY SHIPMENT", shipment)
+        if (shipment) {
+          shipmentOrder.postage_label = shipment.postage_label
+          shipmentOrder.payment_status = "paid"
+          await shipmentOrder.save()
+          res.send({ shipment })
+        }
+      }
+      ).catch(err => {
+        console.log("BUY ERROR", err)
+        res.status(401).send({ message: "some thing went wrong", err })
+      });
+  } catch (error) {
+
+  }
+})
 
 app.use(express.static(path.join(__dirname, '/../frontend/build')));
 
