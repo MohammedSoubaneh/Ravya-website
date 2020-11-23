@@ -7,15 +7,19 @@ import { loadStripe } from '@stripe/stripe-js';
 import { motion } from 'framer-motion';
 import Loader from '../Loader/Loader';
 
+
 const stripePromise = loadStripe('pk_test_51HLEnyGLtWDqx1qOuhwNOtq65b6yePscQjYcES7rTYRJK0R44QMWo4i1R4VAf3GLDv1Gg3jQ4pezZDWoFDiRXL0L005dHHnLqM');
 
 const countries = [
   { name: "Canada", value: 'CA' },
   { name: "USA", value: 'US' },
-  { name: "Germany", value: 'DE' },
-  { name: "France", value: 'FR' }
+  { name: "United Kingdom", value: 'GB' },
+  { name: "Australia ", value: 'AU' }
 
 ]
+
+const additionalShipmentCharges = 1.00
+
 function Cart(props) {
   const [address, setAddress] = useState("")
   const [name, setName] = useState("")
@@ -26,7 +30,7 @@ function Cart(props) {
   const [state, setState] = useState("")
   const [addressType, setAdressType] = useState("residential")
   const [street, setStreet] = useState("")
-  const [shipmentFee, setShipment] = useState(0)
+  const [shipment, setShipment] = useState({shipmentFee:0, orderId:''})
   const [country, setCountry] = useState('CA')
   const [isLoading, setLoader] = useState(false)
   const cart = useSelector(state => state.cart);
@@ -44,7 +48,7 @@ function Cart(props) {
   }, []);
   const handleClick = async (event) => {
     try {
-      if (shipmentFee && shipmentFee !== 0) {
+      if (shipment.shipmentFee && shipment.shipmentFee !== additionalShipmentCharges && shipment.shipmentFee !== 0) {
         setLoader(true)
         const stripe = await stripePromise;
         const data = cartItems.map(item => (
@@ -67,11 +71,11 @@ function Cart(props) {
               name: 'Shipping Cost',
               images: ['https://logos-download.com/wp-content/uploads/2016/10/Canada_Post_logo_logotype.png'],
             },
-            unit_amount: shipmentFee * 100,
+            unit_amount: shipment.shipmentFee * 100,
           },
           quantity: 1
         })
-        const response = await axios.post("/create-session", { cartItems: data })
+        const response = await axios.post("/create-session", { cartItems: data, order:shipment.orderId })
         const session = await response.data;
         console.log("SESSION", session)
         // When the customer clicks on the button, redirect them to Checkout.
@@ -106,10 +110,10 @@ function Cart(props) {
       const fee = await response.data;
       if (fee) {
         console.log("Shipment Fee", fee)
-        setShipment(parseFloat(fee.shipmentFee))
+        setShipment({shipmentFee:parseFloat(fee.shipmentFee) + additionalShipmentCharges, orderId:fee.order})
         setLoader(false)
       }
-      else{
+      else {
         setLoader(false)
         alert("Something went wrong, please check your address and try again")
       }
@@ -239,10 +243,10 @@ function Cart(props) {
         </div>
         <div className="cartAction">
           <div className="subTotalMain">
-            Shipping Cost{/*({cartItems.reduce((a, c) => a + c.qty, 0)} items)*/}:&nbsp;${shipmentFee}
+            Shipping Cost{/*({cartItems.reduce((a, c) => a + c.qty, 0)} items)*/}:&nbsp;${shipment.shipmentFee}
           </div>
           <div className="subTotalMain">
-            Subtotal{/*({cartItems.reduce((a, c) => a + c.qty, 0)} items)*/}:&nbsp;${cartItems.reduce((a, c) => a + c.price * c.qty, shipmentFee)}
+            Subtotal{/*({cartItems.reduce((a, c) => a + c.qty, 0)} items)*/}:&nbsp;${cartItems.reduce((a, c) => a + c.price * c.qty, shipment.shipmentFee).toFixed(2)}
           </div>
           <motion.div whileTap={{ scale: 1.1 }} className="buttonPrimaryMain" disabled={cartItems.length === 0} role="link" onClick={handleClick}>Proceed to Checkout</motion.div>
         </div>

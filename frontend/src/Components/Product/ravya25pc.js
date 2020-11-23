@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { detailsProduct } from '../../actions/productAction';
 import {motion} from 'framer-motion';
+// import ReactPlayer from 'react-player';
 import VideoPlayer from 'react-video-js-player';
 
 
