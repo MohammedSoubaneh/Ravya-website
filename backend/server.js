@@ -301,13 +301,12 @@ const generateInternationalShipment = (to_address, cartItems, res) => {
       },
       from_address: {
         'company': 'Ravya',
-        'street1': '45 Rue Saint-Jacques',
-        'street2': '5th Floor',
-        'city': 'Gatineau',
-        'state': 'Quebec',
-        'zip': 'J8X0B6',
+        'street1': '110 Acorn Place',
+        'city': 'Mississauga',
+        'state': 'Ontario',
+        'zip': 'L4Z 3N4',
         'country': 'CA',
-        'phone': '415-528-7555'
+        'phone': '613-400-4395'
       },
       parcel: {
         'length': 7,
