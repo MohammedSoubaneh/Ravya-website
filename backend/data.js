@@ -73,7 +73,7 @@ export default {
             "created_at": "2020-11-23T19:49:40Z",
             "updated_at": "2020-11-23T19:49:40Z",
             "description": "Ravya Turmeric Infusion 20pc",
-            "quantity": 1,
+            "quantity": 500,
             "value": "20.0",
             "weight": 4.232,
             "hs_tariff_number": "610910",
