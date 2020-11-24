@@ -12,10 +12,24 @@ import { AnimatePresence } from 'framer-motion';
 import RecipeChickpea from './Components/Recipe Page/recipeChickpea';
 import RecipeRice from './Components/Recipe Page/recipeRice';
 import RecipeIceCream from './Components/Recipe Page/recipeIceCream';
+import ReactPixel from 'react-facebook-pixel';
 
+const advancedMatching = { em: 'soubcompany@gmail.com' }; // optional, more info: https://developers.facebook.com/docs/facebook-pixel/advanced/advanced-matching
+const options = {
+  autoConfig: true, // set pixel's autoConfig. More info: https://developers.facebook.com/docs/facebook-pixel/advanced/
+  debug: false, // enable logs
+};
+ReactPixel.init('1667595310081040', advancedMatching, options);
+
+ReactPixel.pageView(); // For tracking page view
+ReactPixel.track(event, data); // For tracking default events. More info about standard events: https://developers.facebook.com/docs/facebook-pixel/implementation/conversion-tracking#standard-events
+ReactPixel.trackSingle('1667595310081040', event, data); // For tracking default events.
+ReactPixel.trackCustom(event, data); // For tracking custom events. More info about custom events: https://developers.facebook.com/docs/facebook-pixel/implementation/conversion-tracking#custom-events
+ReactPixel.trackSingleCustom('1667595310081040', event, data); // For tracking custom events.
 
 
 function App() {
+
 
 
 
