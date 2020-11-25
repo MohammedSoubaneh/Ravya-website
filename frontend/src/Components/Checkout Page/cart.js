@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import Loader from '../Loader/Loader';
 
 
-const stripePromise = loadStripe('pk_test_51HLEnyGLtWDqx1qOuhwNOtq65b6yePscQjYcES7rTYRJK0R44QMWo4i1R4VAf3GLDv1Gg3jQ4pezZDWoFDiRXL0L005dHHnLqM');
+const stripePromise = loadStripe('pk_live_51HLEnyGLtWDqx1qO7Krf8y7hbhrwbvR5BMlwVuF5H733kupZokrTYhprGajzbDopv2nnZs2GG3Tj1OU5JyYEcomP00aqWjnBSd');
 
 const countries = [
   { name: "Canada", value: 'CA' },
