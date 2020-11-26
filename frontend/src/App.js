@@ -12,11 +12,20 @@ import { AnimatePresence } from 'framer-motion';
 import RecipeChickpea from './Components/Recipe Page/recipeChickpea';
 import RecipeRice from './Components/Recipe Page/recipeRice';
 import RecipeIceCream from './Components/Recipe Page/recipeIceCream';
+import TagManager from 'react-gtm-module'
 
+const tagManagerArgs = {
+  gtmId: 'GTM-58FLFFZ'
+}
+
+TagManager.initialize(tagManagerArgs)
 
 
 function App() {
 
+  window.dataLayer.push({
+    event: 'pageview'
+  });
 
   return (
     <AnimatePresence>
