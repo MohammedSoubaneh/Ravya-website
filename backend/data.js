@@ -72,7 +72,7 @@ export default {
             "mode": "production",
             "created_at": "2020-11-23T19:49:40Z",
             "updated_at": "2020-11-23T19:49:40Z",
-            "description": "Ravya Turmeric Infusion 20pc",
+            "description": "Ravya Turmeric Infusion 25pc",
             "quantity": 1,
             "value": "20.0",
             "weight": 4.232,

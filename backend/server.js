@@ -278,12 +278,16 @@ const generateCustomItems = (cart) => {
 }
 const generateInternationalShipment = (to_address, cartItems, res) => {
   console.log("CUSTOM ITEMS", generateCustomItems(cartItems))
+  const items = generateCustomItems(cartItems)
+  if (!items?.length) {
+    return res.status(400).send({ message: "unable to get custom info for selected item!" })
+  }
   const customsInfo = new api.CustomsInfo({
     eel_pfc: 'NOEEI 30.37(a)',
     customs_certify: true,
     customs_signer: 'Mohammed Soubaneh',
     contents_type: 'merchandise',
-    customs_items: generateCustomItems(cartItems)
+    customs_items: items
   })
   customsInfo.save().then(customs_info => {
     const shipment = new api.Shipment({
