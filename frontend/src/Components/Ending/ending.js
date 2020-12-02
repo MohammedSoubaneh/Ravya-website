@@ -74,7 +74,7 @@ function Ending() {
           <div className="whyUs"><p>Why Us?</p></div>
           <div className="whyUsReason">
             <div ref={whyUsOneAnimateGo =>{whyUsOneAnimate = whyUsOneAnimateGo}} className="whyUsOne"><img src="/images/right.png" alt="first-arrow" ></img>Ingredients: Turmeric, Black pepper, Nothing else.</div>
-            <div ref={whyUsTwoAnimateGo =>{whyUsTwoAnimate = whyUsTwoAnimateGo}} className="whyUsTwo"><img src="/images/right.png" alt="second-arrow"  ></img>Our Turmeric Fusion has upto 7X the amount of curcumin then traditional turmeric.</div>
+            <div ref={whyUsTwoAnimateGo =>{whyUsTwoAnimate = whyUsTwoAnimateGo}} className="whyUsTwo"><img src="/images/right.png" alt="second-arrow"  ></img>Our Turmeric Fusion has up to 7X the amount of curcumin then traditional turmeric.</div>
             <div ref={whyUsThreeAnimateGo =>{whyUsThreeAnimate = whyUsThreeAnimateGo}} className="whyUsThree"><img src="/images/right.png" alt="third-arrow" ></img>We care about formulating products that are clean, simple, and delicious.</div>
             <div ref={theRavyaWayAnimateGo =>{theRavyaWay = theRavyaWayAnimateGo}} className="theRavyaWay">Thats The Ravya Way</div>
           </div>
