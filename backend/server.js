@@ -124,10 +124,10 @@ app.post('/create-session', async (req, res) => {
     // console.log("SESSION BODY", JSON.stringify(req.body.cartItems))
     const { cartItems, order } = req.body
     // const shipmentOrder = await Order.findById(order)
-    const cart = checkForFreeItems(cartItems)
+    // const cart = checkForFreeItems(cartItems)
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
-      line_items: cart,
+      line_items: cartItems,
       mode: 'payment',
       allow_promotion_codes: true,
       success_url: `${"https://www.ravya.ca/home/products"}?success=true`,

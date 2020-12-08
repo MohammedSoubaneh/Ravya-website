@@ -11,12 +11,14 @@ import Loader from '../Loader/Loader';
 const stripePromise = loadStripe('pk_live_51HLEnyGLtWDqx1qO7Krf8y7hbhrwbvR5BMlwVuF5H733kupZokrTYhprGajzbDopv2nnZs2GG3Tj1OU5JyYEcomP00aqWjnBSd');
 
 const countries = [
+  { name: "Country", value: '' },
   { name: "Canada", value: 'CA' },
   { name: "USA", value: 'US' },
   { name: "United Kingdom", value: 'GB' },
   { name: "Australia ", value: 'AU' }
 
 ]
+
 
 const additionalShipmentCharges = 1.00
 
@@ -30,8 +32,8 @@ function Cart(props) {
   const [state, setState] = useState("")
   const [addressType, setAdressType] = useState("residential")
   const [street, setStreet] = useState("")
-  const [shipment, setShipment] = useState({shipmentFee:0, orderId:''})
-  const [country, setCountry] = useState('CA')
+  const [shipment, setShipment] = useState({ shipmentFee: 0, orderId: '' })
+  const [country, setCountry] = useState('')
   const [isLoading, setLoader] = useState(false)
   const cart = useSelector(state => state.cart);
   const { cartItems } = cart;
@@ -110,7 +112,7 @@ function Cart(props) {
       const fee = await response.data;
       if (fee) {
         console.log("Shipment Fee", fee)
-        setShipment({shipmentFee:parseFloat(fee.shipmentFee) + additionalShipmentCharges, orderId:fee.order})
+        setShipment({ shipmentFee: parseFloat(fee.shipmentFee) + additionalShipmentCharges, orderId: fee.order })
         setLoader(false)
       }
       else {
@@ -141,15 +143,15 @@ function Cart(props) {
                 </Link></div>
                 <div className="qtyOuter">
                   <div className="qtyInner">
-                    <span>Qty:</span>&nbsp; <select className="qtyCart" value={item.qty} onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}>
+                    <span>Qty:</span>&nbsp; <select className="qtyCart" disabled={item.isFree} value={item.qty} onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}>
                       {[...Array(item.countInStock).keys()].map(x =>
                         <option className="qty" key={x + 1} value={x + 1}>{x + 1}</option>
                       )}
                     </select>
                   </div>
-                  <div className="removeButton" type="button" onClick={() => removeFromCartHandler(item.product)}>&nbsp;Delete</div>
+                  {!item.isFree && <div className="removeButton" type="button" onClick={() => removeFromCartHandler(item.product)}>&nbsp;Delete</div>}
                 </div>
-                <div className="cartPrice">${item.price}</div>
+                {item.isFree ? <div className="cartPrice"><del>$15</del></div> : <div className="cartPrice">${item.price}</div>}
               </div>
             )
         }
@@ -245,6 +247,14 @@ function Cart(props) {
           <div className="subTotalMain">
             Shipping Cost{/*({cartItems.reduce((a, c) => a + c.qty, 0)} items)*/}:&nbsp;${shipment.shipmentFee}
           </div>
+          {cartItems.find(item => item.isFree) && <>
+            <div className="subTotalMain">
+              Total Amount{/*({cartItems.reduce((a, c) => a + c.qty, 0)} items)*/}:&nbsp;${cartItems.reduce((a, c) => a + c.price * c.qty, shipment.shipmentFee + 30).toFixed(2)}
+          </div>
+            <div className="subTotalMain">
+              Total Discount{/*({cartItems.reduce((a, c) => a + c.qty, 0)} items)*/}:&nbsp;$30
+          </div>
+          </>}
           <div className="subTotalMain">
             Subtotal{/*({cartItems.reduce((a, c) => a + c.qty, 0)} items)*/}:&nbsp;${cartItems.reduce((a, c) => a + c.price * c.qty, shipment.shipmentFee).toFixed(2)}
           </div>
