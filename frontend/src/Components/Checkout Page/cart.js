@@ -77,7 +77,7 @@ function Cart(props) {
           },
           quantity: 1
         })
-        const response = await axios.post("/create-session", { cartItems: data, order:shipment.orderId })
+        const response = await axios.post("/create-session", { cartItems: data, order: shipment.orderId })
         const session = await response.data;
         console.log("SESSION", session)
         // When the customer clicks on the button, redirect them to Checkout.
@@ -101,6 +101,12 @@ function Cart(props) {
   };
   const hanldeSubmit = async (event) => {
     event.preventDefault()
+    if (!country || !zip || !address || !city || !state) {
+      return alert('fields with * are required!')
+    }
+    if (country && country != 'CA' && !phone && !name && !email) {
+      return alert('name, email and phone number is reuired for non Canadian resident!')
+    }
     try {
       setLoader(true)
       let residential
@@ -171,7 +177,7 @@ function Cart(props) {
               <div className="spaceBetweenForm"></div>
               <input
                 className="inputOne"
-                placeholder="Street 1"
+                placeholder="Street 1 *"
                 name="address"
                 type='text'
                 value={address}
@@ -188,7 +194,7 @@ function Cart(props) {
 
               <input
                 className="inputOne"
-                placeholder="City"
+                placeholder="City *"
                 name="city"
                 type='text'
                 value={city}
@@ -213,7 +219,7 @@ function Cart(props) {
               </select>
               <input
                 className="inputOne"
-                placeholder={country === 'CA' ? 'Province' : 'State'}
+                placeholder={country === 'CA' ? 'Province *' : 'State *'}
                 name="state"
                 type='text'
                 value={state}
@@ -222,7 +228,7 @@ function Cart(props) {
               <div className="spaceBetweenForm"></div>
               <input
                 className="inputOne"
-                placeholder={country === 'CA' ? 'Postal Code' : 'Zip'}
+                placeholder={country === 'CA' ? 'Postal Code *' : 'Zip *'}
                 name="zip"
                 type='text'
                 value={zip}
@@ -250,7 +256,7 @@ function Cart(props) {
           {cartItems.find(item => item.isFree) && <>
             <div className="subTotalMain">
               Total Amount{/*({cartItems.reduce((a, c) => a + c.qty, 0)} items)*/}:&nbsp;${cartItems.reduce((a, c) => a + c.price * c.qty, shipment.shipmentFee + 30).toFixed(2)}
-          </div>
+            </div>
             <div className="subTotalMain">
               Total Discount{/*({cartItems.reduce((a, c) => a + c.qty, 0)} items)*/}:&nbsp;$30
           </div>

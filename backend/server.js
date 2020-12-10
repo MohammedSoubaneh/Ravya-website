@@ -222,7 +222,7 @@ const generateLocalShipment = async (to_address, cartItems, res) => {
       'height': 7,
       'weight': 5.36164
     }
-   // parcel: getParcelDimensions(cartItems)
+    // parcel: getParcelDimensions(cartItems)
   });
 
   shipment.save().then(async () => {
@@ -331,6 +331,7 @@ const generateInternationalShipment = (to_address, cartItems, res) => {
         res.send({ shipmentFee: shipment.lowestRate().rate, order: order._id })
       } catch (error) {
         console.log('shipment create error', error)
+        res.status(401).send({ message: "please check your address and try again!", err })
       }
     }).catch(err => {
       console.log("SHIPMENT ERROR", err)
