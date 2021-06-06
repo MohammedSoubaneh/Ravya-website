@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { detailsProduct } from '../../actions/productAction';
 import {motion} from 'framer-motion';
-
+// import ReactPlayer from 'react-player';
+import VideoPlayer from 'react-video-js-player';
+import { Helmet } from 'react-helmet';
 
 
 
@@ -29,6 +31,11 @@ function RavyaProductPageLarge(props){
     
     return (
      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={transitionDelay}>
+         <Helmet>
+             <title>Ravya | Buy Now</title>
+             <meta name='description' content='The worlds first Turmeric Infusion. Made with only Turmeric and Black pepper.' />
+             <meta name='keywords' content='Ravya, turmeric, turmeric latte, latte, turmeric infusion, infusion, turmeric tea, tea, coffee alternative, healthy, tasty'/>
+         </Helmet>
             {loading ? (
                 <div>Loading...</div>
             ) : error ? (
@@ -37,15 +44,14 @@ function RavyaProductPageLarge(props){
                 <>
                 <div className="largeHeroContainer">
                 <div className="largeHeroInner">
-                <div className="heroImage"><img width="1025px" src={product.heroImage}/></div>
+                <div className="heroImage"><img width={product.size} src={product.heroImage}/></div>
                 
                 <div className="productImage">
-                <motion.img initial={{opacity: 0, y: 40}} animate={{opacity: 1, y: 0}} transition={transitionDelay}  src={product.image} width={product.productWidth}/>
+                <motion.img initial={{opacity: 0, y: 40}} animate={{opacity: 1, y: 0}} transition={transitionDelay}  src={product.image} width={product.size}/>
                 <div className="productText">
                     <motion.h1 initial={{opacity: 0, y: 40}} animate={{opacity: 1, y: 0}} transition={transition}>{product.title}</motion.h1>
                     <motion.h2 initial={{opacity: 0, y: 40}} animate={{opacity: 1, y: 0}} transition={transition}>{product.name}</motion.h2>
                     <motion.p initial={{opacity: 0, y: 40}} animate={{opacity: 1, y: 0}} transition={transition} className="price">${product.price}</motion.p>
-                    <motion.p initial={{opacity: 0, y: 40}} animate={{opacity: 1, y: 0}} transition={transition} className="delivery">Delivery Info</motion.p>
                     <motion.div onClick={handleAddToCart} whileHover={{scale: 1.1}} whileTap={{scale:1}} className="addToCart">Buy Now</motion.div>
                 </div>
                 </div>
@@ -60,7 +66,14 @@ function RavyaProductPageLarge(props){
                     <div className="stepThreeTitle">Step Three</div>
                     <div className="stepThreeInstruction">Dip the Infusion a few times and allow it to infuse for 3-4 minutes. Add Sweeteners as per your taste and Enjoy!</div>
             </div>
-            <div className="howToMakeVideo"></div>
+            <div className="howToMakeVideo">
+                <VideoPlayer
+                className="videoPlayer"  
+                src="/images/videoplayback.mp4"
+                playbackRates={[0.5, 1, 3.85, 16]}
+                muted={false}
+                />
+            </div>
             </div>
             </div>
             </>

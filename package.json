@@ -19,9 +19,11 @@
     "@babel/runtime": "^7.12.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-runtime": "^6.26.0",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.7"
   },
   "dependencies": {
+    "@babel/runtime": "^7.12.1",
+    "@easypost/api": "^3.9.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "del-cli": "^3.0.1",
@@ -31,11 +33,15 @@
     "gsap": "^3.5.1",
     "mongoose": "^5.10.6",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "stripe": "^8.114.0"
 =======
     "stripe": "^8.112.0",
     "@babel/runtime": "^7.12.1"
 >>>>>>> 8e51e7ddde5697524e009e5441e532cbc44e600b
+=======
+    "stripe": "^8.112.0"
+>>>>>>> feat-easypost-integration
   },
   "homepage": "https://github.com/MohammedSoubaneh/Ravya-website",
   "engines": {
