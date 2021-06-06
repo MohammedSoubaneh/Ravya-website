@@ -4,6 +4,7 @@ import { detailsProduct } from '../../actions/productAction';
 import {motion} from 'framer-motion';
 // import ReactPlayer from 'react-player';
 import VideoPlayer from 'react-video-js-player';
+import { Helmet } from 'react-helmet';
 
 
 
@@ -30,6 +31,11 @@ function RavyaProductPageLarge(props){
     
     return (
      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={transitionDelay}>
+         <Helmet>
+             <title>Ravya | Buy Now</title>
+             <meta name='description' content='The worlds first Turmeric Infusion. Made with only Turmeric and Black pepper.' />
+             <meta name='keywords' content='Ravya, turmeric, turmeric latte, latte, turmeric infusion, infusion, turmeric tea, tea, coffee alternative, healthy, tasty'/>
+         </Helmet>
             {loading ? (
                 <div>Loading...</div>
             ) : error ? (

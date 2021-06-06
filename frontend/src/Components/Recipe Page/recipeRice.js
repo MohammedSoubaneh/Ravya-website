@@ -1,11 +1,15 @@
 import React from 'react';
 import {motion} from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 function RecipeRice () {
     const transitionDelay = { delay: 1, duration: 2, ease: [0.6, 0.01, -0.1, 0.96] };
     return(
         <motion.div className="recipeContainer" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={transitionDelay}>
+            <Helmet>
+                <title>Ravya | Ravya + Rice</title>
+            </Helmet>
             <div className="heroText">Ravya + Rice</div>
             <div className="recipeDescription">No one wants a heap full of bland, unflavored rice that dampens the experience of your entire
                     meal. So activate a variety of your senses through not only the consuming but preparation process

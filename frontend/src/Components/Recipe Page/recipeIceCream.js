@@ -1,11 +1,17 @@
 import React from 'react';
 import {motion} from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 function RecipeIceCream () {
     const transitionDelay = { delay: 1, duration: 2, ease: [0.6, 0.01, -0.1, 0.96] };
     return(
         <motion.div className="recipeContainer" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={transitionDelay}>
+            <Helmet>
+                <title>Ravya | Ravya + Ice Cream</title>
+                <meta name='description' content='The worlds first Turmeric Infusion. Made with only Turmeric and Black pepper.' />
+                <meta name='keywords' content='Ravya, turmeric, turmeric latte, latte, turmeric infusion, infusion, turmeric tea, tea, coffee alternative, healthy, tasty'/>
+            </Helmet>
             <div className="heroText">Ravya + Ice Cream</div>
             <div className="recipeDescription">Store bought ice cream is a thin and watered down experience of one of life’s wonderfully cool and
                 creamy delights. Through a process that is simple and rewarding, you could be enjoying your very
